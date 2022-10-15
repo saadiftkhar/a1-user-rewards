@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "Mafia Master Rewards"><!ENTITY appfullname "Mafia Master">]>
+
+<resources>
+    <string name="app_name">&appname;</string>
+    <string name="app_full_name">&appfullname;</string>
+
+    <string name="welcome_message">Welcome to &appfullname;</string>
+    <string name="accept_and_continue">Accept &amp; Continue</string>
+    <string name="consent_privacy_terms">I have read and accept the privacy terms</string>
+    <string name="open">Open</string>
+    <string name="claim">Claim</string>
+
+    <string name="choose_game">Choose Game</string>
+    <string name="game_coin_master">Coin Master</string>
+    <string name="game_coin_tales">Coin Tales</string>
+    <string name="game_crazy_fox">Crazy Fox</string>
+    <string name="game_dice_dreams">Dice Dreams</string>
+    <string name="game_pet_master">Pet Master</string>
+    <string name="game_piggy_go">Piggy Go</string>
+    <string name="game_coin_dragon">Coin Dragon</string>
+    <string name="game_family_island">Family Island</string>
+    <string name="game_mafia_master">Mafia Master</string>
+
+    <string name="admin">Admin</string>
+    <string name="add_reward_link">Add Reward Link</string>
+    <string name="hint_reward_title">Enter Reward Title</string>
+    <string name="hint_reward_link">Enter Reward Link</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="share_link_title">Hey! Mafia Master Fans,</string>
+    <string name="share_link_message">I just found an amazing app that gives mafia master free spins and coin rewards daily.</string>
+
+
+    <string name="push_notification">Push Notification</string>
+    <string name="hint_enter_title">Enter Title</string>
+    <string name="hint_enter_message">Enter Message</string>
+    <string name="send">Send</string>
+
+    <string name="sure_to_open">Are you sure you want to open?</string>
+    <string name="consent_dialog_message">The %s URL will be opened outside the app. Do you agree that you want to leave the application and open the given URL outside the app now?</string>
+    <string name="not_show_this_dialog">I don"'"t want to see this dialog again</string>
+
+    <!--    Notification channel id-->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+    <string name="redeem_code_description">
+        Follow These Steps To Redeem Code!\n\n
+        <b>1.</b>  Tap the "Menu" in the top right corner\n
+        <b>2.</b>  Tap the "Settings" below\n
+        <b>3.</b>  Tap "Red Gift Box Icon" on the middle\n
+        <b>4.</b>  Enter the copied "Redeem Code" and Tap "Redeem"\n
+        Please follow the above steps in mafia master game to redeem code
+    </string>
+    <string name="copy">Copy</string>
+
+    <!--    Ad unit id-->
+    <string name="admob_app_id">ca-app-pub-8351253828200600~1713577350</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8351253828200600/8908050406</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-8351253828200600/3847295413</string>
+    <string name="native_ad_unit_id">ca-app-pub-8351253828200600/8478296256</string>
+    <string name="ad_attribution">Ad</string>
+    <string name="advertisement"><u>Advertisement</u></string>
+
+    <!--    Test banner id-->
+    <!--    ca-app-pub-3940256099942544/6300978111-->
+    <!--    Test interstitial id-->
+    <!--    ca-app-pub-3940256099942544/1033173712-->
+    <!--    Test native id-->
+    <!--    ca-app-pub-3940256099942544/2247696110-->
+
+
+    <!--    Applovin sdk key-->
+    <string name="applovin_sdk_key">8JZxTT0OVLTuH-528Fsx68-MDtWmUdGVJF0VC4RpTtNUQ78FfdRS7mRwKRQd4_og0Nt_dCFxCWar_9xW-Rf9GM</string>
+    <string name="applovin_interstitial_ad_unit_id">6045afb2481ea416</string>
+    <string name="applovin_banner_ad_unit_id">3cc5ded432c1adbc</string>
+    <string name="applovin_native_ad_unit_id">3b950b8a0d9bc18f</string>
+
+    <string name="details">Details</string>
+    <string name="open_rewards">Open Rewards</string>
+    <string name="retry">retry</string>
+    <string name="internet_lost">The internet got lost, please try again later</string>
+    <string name="error_message_502">Internal server error</string>
+    <string name="something_went_wrong">Something went wrong, please try again later</string>
+    <string name="error_message_403">Authentication error</string>
+    <string name="read">Read</string>
+    <string name="app_not_installed">%s is not installed in your phone. Please install it first. It\'s %s requirement\'s to claim the reward</string>
+
+
+</resources>

@@ -1,0 +1,194 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs'
+}
+
+static def getTimestamp() {
+    return new Date().format('yyyyMMddss').toInteger()
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.cdrewards.freespinslink"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            version = '3.18.1'
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        applicationVariants.all {
+                // this method is use to rename your release apk only
+            variant ->
+                variant.outputs.each {
+                    output ->
+                        def formattedDate = new Date().format('MMM dd yy HH;mm;ss')
+                        def newName = output.outputFile.name
+                        newName = newName.replace("app-", "").replace("-release", "-release-(" + formattedDate + ")")
+                        output.outputFileName = newName
+                }
+        }
+
+    }
+    flavorDimensions "games"
+    productFlavors {
+        Coin_Dragon {
+            dimension "games"
+            applicationId "com.cdrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.3"
+        }
+        Coin_Master {
+            dimension "games"
+            applicationId "com.cmrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.3"
+        }
+        Coin_Tales {
+            dimension "games"
+            applicationId "com.ctrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.6"
+        }
+        Crazy_Fox {
+            dimension "games"
+            applicationId "com.cfrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.2"
+        }
+        Dice_Dreams {
+            dimension "games"
+            applicationId "com.ddrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.5"
+        }
+        Match_Master {
+            dimension "games"
+            applicationId "com.mmrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.4"
+        }
+        Pet_Master {
+            dimension "games"
+            applicationId "com.pmrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.2"
+        }
+        Piggy_Go {
+            dimension "games"
+            applicationId "com.pgrewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.2"
+        }
+        Family_Island {
+            dimension "games"
+            applicationId "com.firewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.0"
+        }
+        Mafia_Master {
+            dimension "games"
+            applicationId "com.mafiarewards.freespinslink"
+            versionCode getTimestamp()
+            versionName "1.1"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.5'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    //    Circle imageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+//    Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+
+//    Responsive screen sizes
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    //   Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //   Logging-Interceptor for Asynchronous Call
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+    //    Round imageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    // Swipe refresh layout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    // Material
+    implementation 'com.google.android.material:material:1.6.0-alpha01'
+
+    // For admob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+
+    // unity facebook mediation adapter
+    implementation "com.unity3d.mediation:mediation-sdk:0.4.0"
+    implementation "com.unity3d.mediation:unityads-adapter:0.4.3"
+    implementation "com.unity3d.mediation:facebook-adapter:0.4.0"
+
+    // Comment it out before uploading or go live
+    //implementation 'com.google.android.ads:mediation-test-suite:2.0.0'
+
+    // For Android 12
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
+
+    //    Fragment Navigation using JetPack
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
+
+    //Paging Library
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+}

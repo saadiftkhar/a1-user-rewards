@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">@color/app_color</color>
+    <color name="purple_500">@color/app_color</color>
+    <color name="purple_700">@color/app_sec_color</color>
+    <color name="teal_200">@color/app_color</color>
+    <color name="teal_700">@color/app_color</color>
+
+    <color name="app_color">@color/dim_brown</color>
+    <color name="app_sec_color">#50AA8364</color>
+</resources>

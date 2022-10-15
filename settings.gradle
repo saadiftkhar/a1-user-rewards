@@ -1,0 +1,13 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
+        }
+    }
+}
+rootProject.name = "A1 User Rewards"
+include ':app', ':applovin_native_ads'

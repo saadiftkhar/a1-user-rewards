@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "Match Masters Rewardz">]>
+
+<resources>
+    <string name="app_name">&appname;</string>
+
+
+    <string name="welcome_message">Welcome to &appname;</string>
+    <string name="accept_and_continue">Accept &amp; Continue</string>
+    <string name="consent_privacy_terms">I have read and accept the privacy terms</string>
+    <string name="open">Open</string>
+    <string name="claim">Claim</string>
+
+    <string name="choose_game">Choose Game</string>
+    <string name="game_coin_master">Coin Master</string>
+    <string name="game_coin_tales">Coin Tales</string>
+    <string name="game_crazy_fox">Crazy Fox</string>
+    <string name="game_dice_dreams">Dice Dreams</string>
+    <string name="game_pet_master">Pet Master</string>
+    <string name="game_piggy_go">Piggy Go</string>
+    <string name="game_match_master">Match Master</string>
+
+    <string name="admin">Admin</string>
+    <string name="add_reward_link">Add Reward Link</string>
+    <string name="hint_reward_title">Enter Reward Title</string>
+    <string name="hint_reward_link">Enter Reward Link</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="share_link_title">Hey! Match Masters Fans,</string>
+    <string name="share_link_message">I just found an amazing app which gives match masters free boosters daily bonus.</string>
+
+
+    <string name="push_notification">Push Notification</string>
+    <string name="hint_enter_title">Enter Title</string>
+    <string name="hint_enter_message">Enter Message</string>
+    <string name="send">Send</string>
+
+    <string name="sure_to_open">Are you sure you want to open?</string>
+    <string name="consent_dialog_message">This %s link will be opened. Do you want to leave this application and open the link now</string>
+    <string name="not_show_this_dialog">I don"'"t want to see this dialog again</string>
+
+    <!--    Notification channel id-->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+    <!--    Ad unit id-->
+    <string name="admob_app_id">ca-app-pub-8351253828200600~9019826505</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8351253828200600/3572058700</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-8351253828200600/5485079636</string>
+    <string name="native_ad_unit_id">ca-app-pub-8351253828200600/8282633368</string>
+    <string name="ad_attribution">Ad</string>
+
+    <!--    Test banner id-->
+    <!--    ca-app-pub-3940256099942544/6300978111-->
+    <!--    Test interstitial id-->
+    <!--    ca-app-pub-3940256099942544/1033173712-->
+    <!--    Test native id-->
+    <!--    ca-app-pub-3940256099942544/2247696110-->
+
+    <!--    Applovin sdk key-->
+    <string name="applovin_sdk_key">9zpIFT1zJRv3IEaX0teH__UZ-JmF26JaNXCUcI64Q6Jo3WETLkT0L9XxVTcF9Iq1kTG2b7qX7Tnah4eWHApIxB</string>
+    <string name="applovin_interstitial_ad_unit_id">8de756088e10f111</string>
+    <string name="applovin_banner_ad_unit_id">a5af4e4d3360a5e2</string>
+    <string name="applovin_native_ad_unit_id">eb3b3c97c0e28ad8</string>
+
+    <!--    My google ad id-->
+    <string name="my_google_ad_id">8c0e38ed–2701-45ef-b29c-0ee9ef0dc84a</string>
+    <string name="client_google_ad_id">9bf12a66-1ab8-4823-a7c5-9976ef832ea7</string>
+
+</resources>

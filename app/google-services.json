@@ -1,0 +1,337 @@
+{
+  "project_info": {
+    "project_number": "1034913781332",
+    "project_id": "cm-rewards-76db7",
+    "storage_bucket": "cm-rewards-76db7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:69f3e227e3fb5dfbef7fc1",
+        "android_client_info": {
+          "package_name": "com.cdrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:7a557e8bff21fb43ef7fc1",
+        "android_client_info": {
+          "package_name": "com.cfrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:aac1d3102ea6365def7fc1",
+        "android_client_info": {
+          "package_name": "com.cmrewards.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-oefru42sfpfbds6q7eh4l9qhbh8drdse.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cmrewards.admin",
+            "certificate_hash": "644628a4a56684b7f8e03d90205bef0912f8ed72"
+          }
+        },
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:635be62badcf76ebef7fc1",
+        "android_client_info": {
+          "package_name": "com.cmrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:82f5b77bf32ce930ef7fc1",
+        "android_client_info": {
+          "package_name": "com.ctrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:ab8d4a8ff11fb392ef7fc1",
+        "android_client_info": {
+          "package_name": "com.ddrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:e74ebc882df113f7ef7fc1",
+        "android_client_info": {
+          "package_name": "com.firewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:41cf20ca7b8091ddef7fc1",
+        "android_client_info": {
+          "package_name": "com.mafiarewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:9e4a9f45d73f799fef7fc1",
+        "android_client_info": {
+          "package_name": "com.mmrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:a363c56ee9455e45ef7fc1",
+        "android_client_info": {
+          "package_name": "com.pgrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034913781332:android:8442a82a1a16de85ef7fc1",
+        "android_client_info": {
+          "package_name": "com.pmrewards.freespinslink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi3eX0yVewyUJMfHmoFscDMDXIJJjpCAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034913781332-815tlscl5sgv498bvq1nfasoq9crqqoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

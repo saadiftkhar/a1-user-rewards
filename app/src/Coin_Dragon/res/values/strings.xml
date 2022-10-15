@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "CD Rewards"><!ENTITY appfullname "Coin Dragon Rewards">]>
+
+<resources>
+    <string name="app_name">&appname;</string>
+    <string name="app_full_name">&appfullname;</string>
+
+    <string name="welcome_message">Welcome to &appfullname;</string>
+    <string name="accept_and_continue">Accept &amp; Continue</string>
+    <string name="consent_privacy_terms">I have read and accept the privacy terms</string>
+    <string name="open">Open</string>
+    <string name="claim">Claim</string>
+
+    <string name="choose_game">Choose Game</string>
+    <string name="game_coin_master">Coin Master</string>
+    <string name="game_coin_tales">Coin Tales</string>
+    <string name="game_crazy_fox">Crazy Fox</string>
+    <string name="game_dice_dreams">Dice Dreams</string>
+    <string name="game_pet_master">Pet Master</string>
+    <string name="game_piggy_go">Piggy Go</string>
+    <string name="game_coin_dragon">Coin Dragon</string>
+
+    <string name="admin">Admin</string>
+    <string name="add_reward_link">Add Reward Link</string>
+    <string name="hint_reward_title">Enter Reward Title</string>
+    <string name="hint_reward_link">Enter Reward Link</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="share_link_title">Hey! Dragon Master Fans,</string>
+    <string name="share_link_message">I just found an amazing app which gives coin dragon free spins.</string>
+
+
+    <string name="push_notification">Push Notification</string>
+    <string name="hint_enter_title">Enter Title</string>
+    <string name="hint_enter_message">Enter Message</string>
+    <string name="send">Send</string>
+
+    <string name="sure_to_open">Are you sure you want to open?</string>
+    <string name="consent_dialog_message">The %s URL will be opened outside the app. Do you agree that you want to leave the application and open the given URL outside the app now?</string>
+    <string name="not_show_this_dialog">I don"'"t want to see this dialog again</string>
+
+    <!--    Notification channel id-->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+    <string name="redeem_code_description">
+        Follow These Steps To Redeem Code!\n\n
+        <b>1.</b>  Open Coin Dragon Game.\n
+        <b>2.</b>  Tap the "Menu" on the top right corner.\n
+        <b>3.</b>  Tap the "Settings" below.\n
+        <b>4.</b>  Enter the copied "Redeem Code" in the Reward Code Section.\n
+        <b>5.</b>  Tap "Claim".
+    </string>
+
+    <string name="copy">Copy</string>
+
+    <!--    Ad unit id-->
+    <string name="admob_app_id">ca-app-pub-8351253828200600~1713577350</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8351253828200600/8908050406</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-8351253828200600/3847295413</string>
+    <string name="native_ad_unit_id">ca-app-pub-8351253828200600/8478296256</string>
+    <string name="ad_attribution">Ad</string>
+    <string name="advertisement"><u>Advertisement</u></string>
+
+    <!--    Test banner id-->
+    <!--    ca-app-pub-3940256099942544/6300978111-->
+    <!--    Test interstitial id-->
+    <!--    ca-app-pub-3940256099942544/1033173712-->
+    <!--    Test native id-->
+    <!--    ca-app-pub-3940256099942544/2247696110-->
+
+
+    <!--    Applovin sdk key-->
+    <string name="applovin_sdk_key">9zpIFT1zJRv3IEaX0teH__UZ-JmF26JaNXCUcI64Q6Jo3WETLkT0L9XxVTcF9Iq1kTG2b7qX7Tnah4eWHApIxB</string>
+    <string name="applovin_interstitial_ad_unit_id">43d9515695086d1e</string>
+    <string name="applovin_banner_ad_unit_id">4da0d8460461e95c</string>
+    <string name="applovin_native_ad_unit_id">2620e007ed6e85db</string>
+
+    <!--    My google ad id-->
+    <string name="my_google_ad_id">8c0e38ed-2701-45ef-b29c-0ee9ef0dc84a</string>
+    <string name="client_google_ad_id">9bf12a66-1ab8-4823-a7c5-9976ef832ea7</string>
+
+
+</resources>

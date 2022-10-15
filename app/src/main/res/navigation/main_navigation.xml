@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/rewardsFragment">
+
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.freespinslink.user.views.fragment.PrivacyPolicyFragment"
+        android:label="PrivacyPolicyFragment"
+        tools:layout="@layout/fragment_privacy_policy">
+        <action
+            android:id="@+id/action_privacyPolicyFragment_to_rewardsFragment"
+            app:destination="@id/rewardsFragment"
+            app:popUpTo="@id/privacyPolicyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardsFragment"
+        android:name="com.freespinslink.user.views.fragment.RewardsFragment"
+        android:label="RewardsFragment"
+        tools:layout="@layout/fragment_rewards">
+        <action
+            android:id="@+id/action_rewardsFragment_to_rewardDetailsFragment"
+            app:destination="@id/rewardDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardDetailsFragment"
+        android:name="com.freespinslink.user.views.fragment.RewardDetailsFragment"
+        android:label="RewardDetailsFragment"
+        tools:layout="@layout/fragment_reward_details">
+        <argument
+            android:name="reward_details"
+            app:argType="com.freespinslink.user.model.Rewards"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_rewardDetailsFragment_to_openRewardBottomSheet"
+            app:destination="@id/openRewardBottomSheet" />
+        <action
+            android:id="@+id/action_rewardDetailsFragment_to_copyRewardBottomSheet"
+            app:destination="@id/copyRewardBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/openRewardBottomSheet"
+        android:name="com.freespinslink.user.bottomsheets.OpenRewardBottomSheet"
+        android:label="OpenRewardBottomSheet"
+        tools:layout="@layout/layout_open_reward_consent">
+        <argument
+            android:name="reward_details"
+            app:argType="com.freespinslink.user.model.Rewards"
+            app:nullable="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/copyRewardBottomSheet"
+        android:name="com.freespinslink.user.bottomsheets.CopyRewardBottomSheet"
+        android:label="CopyRewardBottomSheet"
+        tools:layout="@layout/layout_copy_reward">
+        <argument
+            android:name="reward_details"
+            app:argType="com.freespinslink.user.model.Rewards"
+            app:nullable="true" />
+    </dialog>
+</navigation>

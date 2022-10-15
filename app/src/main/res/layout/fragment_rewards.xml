@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="user.views.fragment.RewardsFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/primaryDark"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toTopOf="@id/llBannerAdView"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_logo"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="?android:actionBarItemBackground"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toBottomOf="@id/title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/title"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:fontFamily="@font/basiercircle_medium"
+                            android:text="@string/app_name"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14ssp"
+                            app:layout_constraintStart_toEndOf="@id/iv_logo"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/iv_logo">
+
+                            <ImageView
+                                android:id="@+id/iv_rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_8sdp"
+                                android:background="@drawable/bg_menu_round_edges"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/ic_star"
+                                app:tint="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/iv_share"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_8sdp"
+                                android:background="@drawable/bg_menu_round_edges"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/ic_share"
+                                app:tint="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/iv_privacy_policy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_8sdp"
+                                android:background="@drawable/bg_menu_round_edges"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/ic_privacy"
+                                app:tint="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/iv_support"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_8sdp"
+                                android:background="@drawable/bg_menu_round_edges"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/ic_support"
+                                app:tint="@color/black" />
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/swipe_refresh"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cl_menu">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="@drawable/bg_rv_solid_round_edges"
+                            android:backgroundTint="@color/grey0"
+                            android:padding="@dimen/_6sdp"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_rewards"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                app:layout_constraintBottom_toTopOf="@id/progress_bar"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:listitem="@layout/item_rewards" />
+
+                            <ProgressBar
+                                android:id="@+id/progress_bar"
+                                android:layout_width="@dimen/_25sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:indeterminateTint="@color/app_color"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/rv_rewards" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                android:id="@+id/llBannerAdView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/bannerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
