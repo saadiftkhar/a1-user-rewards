@@ -86,3 +86,4 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+app/Crazy_Fox/release/output-metadata.json
