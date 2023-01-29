@@ -75,7 +75,7 @@ android {
             dimension "games"
             applicationId "com.cfrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.3"
+            versionName "1.2"
         }
         Dice_Dreams {
             dimension "games"

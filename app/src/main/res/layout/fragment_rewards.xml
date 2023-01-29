@@ -37,7 +37,7 @@
                             android:layout_height="@dimen/_60sdp"
                             android:layout_marginStart="@dimen/_15sdp"
                             android:background="?android:actionBarItemBackground"
-                            android:padding="@dimen/_6sdp"
+                            android:padding="@dimen/_3sdp"
                             android:src="@drawable/logo"
                             app:layout_constraintBottom_toBottomOf="@id/title"
                             app:layout_constraintStart_toStartOf="parent"
