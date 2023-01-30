@@ -21,7 +21,6 @@ class PrivacyPolicyFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentPrivacyPolicyBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,7 +37,6 @@ class PrivacyPolicyFragment : Fragment(), View.OnClickListener {
         setupViews()
 
     }
-
 
     private fun setupViews() {
         when (Constants.BUILD_FLAVOUR) {
