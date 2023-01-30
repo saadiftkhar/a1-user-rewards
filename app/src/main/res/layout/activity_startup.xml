@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="user.views.activity.StartupActivity">
+    tools:context=".views.activity.StartupActivity">
 
     <fragment
         android:id="@+id/mainHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true" />
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

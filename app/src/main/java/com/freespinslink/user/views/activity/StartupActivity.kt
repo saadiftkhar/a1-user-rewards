@@ -6,6 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.freespinslink.user.R
 import com.freespinslink.user.utils.SharedStorage
+import com.freespinslink.user.utils.showToast
+import com.freespinslink.user.views.fragment.PrivacyPolicyFragmentDirections
 
 class StartupActivity : AppCompatActivity() {
 
@@ -16,23 +18,34 @@ class StartupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
 
-        setupViews()
-
-    }
-
-    private fun setupViews() {
-        navigationController = Navigation.findNavController(this, R.id.mainHostFragment)
-        val navGraph = navigationController.navInflater.inflate(R.navigation.main_navigation)
-
-        if (SharedStorage.isPrivacyChecked())
-            navGraph.setStartDestination(R.id.rewardsFragment)
-        else
-            navGraph.setStartDestination(R.id.privacyPolicyFragment)
-        navigationController.graph = navGraph
+        try {
+            setupViews()
+        } catch (e: Exception) {
+            e.localizedMessage?.let { showToast(it) }
+        }
 
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navigationController.navigateUp() || super.onSupportNavigateUp()
     }
+
+    override fun onBackPressed() {
+        if (SharedStorage.isPrivacyChecked())
+            super.onBackPressed()
+        else finish()
+    }
+
+    private fun setupViews() {
+        navigationController = Navigation.findNavController(this, R.id.mainHostFragment)
+
+        if (SharedStorage.isPrivacyChecked()) {
+            navigationController
+                .navigate(
+                    PrivacyPolicyFragmentDirections.actionPrivacyPolicyFragmentToRewardsFragment()
+                )
+        }
+    }
+
+
 }

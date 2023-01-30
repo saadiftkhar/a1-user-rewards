@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey0"
-        tools:context="user.views.fragment.PrivacyPolicyFragment">
+        tools:context=".views.fragment.PrivacyPolicyFragment">
 
         <ImageView
             android:id="@+id/iv_app_icon"

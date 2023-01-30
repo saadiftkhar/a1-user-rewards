@@ -19,7 +19,7 @@ class RewardsViewModel(application: Application) : AndroidViewModel(application)
 
     val updateReward: MutableLiveData<OneShotEvent<Rewards>> = MutableLiveData()
     val updateRewardFailed: MutableLiveData<Boolean> = MutableLiveData()
-    val rewards: MutableLiveData<PagingData<Rewards>> = MutableLiveData()
+    val rewards: MutableLiveData<PagingData<Rewards>?> = MutableLiveData()
     val error: MutableLiveData<Boolean> = MutableLiveData()
     private var result: Flow<PagingData<Rewards>>? = null
 
