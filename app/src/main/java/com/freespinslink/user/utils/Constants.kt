@@ -73,6 +73,7 @@ object Constants : GamesPackage() {
     private fun isAllowed(): Boolean = when (BUILD_FLAVOUR) {
         EnumGames.DICE_DREAMS.value -> true
         EnumGames.MAFIA_MASTER.value -> true
+        EnumGames.CRAZY_FOX.value -> true
         else -> false
     }
 
