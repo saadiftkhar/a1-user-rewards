@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -76,11 +77,14 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
                 showCopyCodeSheet()
             else showConsentSheet()
         } else {
-            binding.tvError.text = requireActivity().getString(
-                R.string.app_not_installed,
-                Constants.getGameName,
-                Constants.getGameName
-            )
+            binding.tvError.let {
+                it.isVisible = true
+                it.text = requireActivity().getString(
+                    R.string.app_not_installed,
+                    Constants.getGameName,
+                    Constants.getGameName
+                )
+            }
         }
     }
 
