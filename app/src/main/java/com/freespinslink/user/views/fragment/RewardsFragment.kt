@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -85,16 +86,11 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
     }
 
     override fun onOpen(rewards: Rewards, position: Int, type: String) {
-        progressDialog.show()
         rewardCtaType = type
         selectedReward = rewards
         selectedPosition = position
 
-        if (rewardCtaType == EnumCtaType.API_CALL.value) {
-            onUpdateReward(rewards.id)
-        } else if (rewardCtaType == EnumCtaType.NO_API_CALL.value) {
-            unityMediationManager.showIntAd()
-        }
+        adDecision(rewards)
     }
 
     override fun onIntAdCloseOrFail() {
@@ -229,4 +225,21 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
         startActivity(Intent.createChooser(intent, "Send mail..."))
     }
 
+    private fun adDecision(rewards: Rewards) {
+
+        AlertDialog.Builder(requireContext())
+            .setTitle("")
+            .setMessage("You are about to watch an interstitial ads, Which is also known as full screen ads.")
+            .setCancelable(false)
+            .setPositiveButton("Watch Ads") { dialog, which ->
+                progressDialog.show()
+
+                if (rewardCtaType == EnumCtaType.API_CALL.value) {
+                    onUpdateReward(rewards.id)
+                } else if (rewardCtaType == EnumCtaType.NO_API_CALL.value) {
+                    unityMediationManager.showIntAd()
+                }
+
+            }.setNegativeButton("No, thanks") { dialog, which -> }.show()
+    }
 }

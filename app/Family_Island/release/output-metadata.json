@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.firewards.freespinslink",
+  "variantName": "Family_IslandRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2023020404,
+      "versionName": "1.0",
+      "outputFile": "Family_Island-release-(Feb 04 23 02;38;04).apk"
+    }
+  ],
+  "elementType": "File"
+}
