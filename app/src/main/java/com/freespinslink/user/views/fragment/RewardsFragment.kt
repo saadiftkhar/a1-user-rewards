@@ -122,12 +122,12 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
 
     private fun setupObservers() {
 
-        rewardsViewModel.rewards.observe(viewLifecycleOwner, Observer {
+        rewardsViewModel.rewards.observe(viewLifecycleOwner) {
             if (it != null)
                 lifecycleScope.launch {
                     rewardsAdapter.submitData(it)
                 }
-        })
+        }
 
         rewardsViewModel.updateReward.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { reward ->
@@ -229,9 +229,9 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
 
         AlertDialog.Builder(requireContext())
             .setTitle("")
-            .setMessage("You are about to watch an interstitial ads, Which is also known as full screen ads.")
+            .setMessage(requireContext().getString(R.string.ad_decision_desc))
             .setCancelable(false)
-            .setPositiveButton("Watch Ads") { dialog, which ->
+            .setPositiveButton(requireContext().getString(R.string.ad_decision_positive_btn)) { dialog, which ->
                 progressDialog.show()
 
                 if (rewardCtaType == EnumCtaType.API_CALL.value) {
@@ -240,6 +240,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
                     unityMediationManager.showIntAd()
                 }
 
-            }.setNegativeButton("No, thanks") { dialog, which -> }.show()
+            }.setNegativeButton(requireContext().getString(R.string.ad_decision_negative_btn)) { dialog, which -> }.show()
+
     }
 }
