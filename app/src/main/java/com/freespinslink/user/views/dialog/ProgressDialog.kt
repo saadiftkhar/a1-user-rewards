@@ -1,4 +1,4 @@
-package com.freespinslink.user.dialog
+package com.freespinslink.user.views.dialog
 
 import android.app.Dialog
 import android.content.Context

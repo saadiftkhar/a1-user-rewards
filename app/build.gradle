@@ -27,7 +27,7 @@ android {
     }
     externalNativeBuild {
         cmake {
-            version = '3.18.1'
+            version = '3.18.1+'
             path file('src/main/cpp/CMakeLists.txt')
         }
     }
@@ -86,7 +86,7 @@ android {
             dimension "games"
             applicationId "com.mmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.4"
+            versionName "1.5"
         }
         Pet_Master {
             dimension "games"
@@ -123,6 +123,7 @@ android {
 
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 }
 

@@ -21,7 +21,7 @@ import com.freespinslink.user.R
 import com.freespinslink.user.ads.unity.UnityMediationManager
 import com.freespinslink.user.controller.RatingController
 import com.freespinslink.user.databinding.FragmentRewardsBinding
-import com.freespinslink.user.dialog.ProgressDialog
+import com.freespinslink.user.views.dialog.ProgressDialog
 import com.freespinslink.user.enums.EnumCtaType
 import com.freespinslink.user.listeners.OnRewardOpen
 import com.freespinslink.user.listeners.UnityIntAdListener
@@ -86,11 +86,15 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
     }
 
     override fun onOpen(rewards: Rewards, position: Int, type: String) {
-        rewardCtaType = type
-        selectedReward = rewards
-        selectedPosition = position
+        if (Constants.isAppInstalled(requireContext())) {
+            rewardCtaType = type
+            selectedReward = rewards
+            selectedPosition = position
 
-        adDecision(rewards)
+            adDecision(rewards)
+        } else {
+            findNavController().navigate(RewardsFragmentDirections.actionRewardsFragmentToRouteToPlaystoreDialog())
+        }
     }
 
     override fun onIntAdCloseOrFail() {

@@ -3,6 +3,7 @@ package com.freespinslink.user.utils
 import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.freespinslink.user.BuildConfig
 import com.freespinslink.user.enums.EnumGames
 
@@ -56,6 +57,10 @@ object Constants : GamesPackage() {
         gamePackageMap[EnumGames.MAFIA_MASTER.value] = MAFIA_MASTER
     }
 
+    fun openGame(context: Context) {
+        (PLAY_STORE_BASE_URL + getGamePackage).openInBrowser(context)
+    }
+
     fun isAppInstalled(context: Context): Boolean {
         if (isAllowed()) {
             val pm: PackageManager = context.packageManager
@@ -75,6 +80,7 @@ object Constants : GamesPackage() {
         EnumGames.MAFIA_MASTER.value -> true
         EnumGames.CRAZY_FOX.value -> true
         EnumGames.FAMILY_ISLAND.value -> true
+        EnumGames.MATCH_MASTER.value -> true
         else -> false
     }
 
