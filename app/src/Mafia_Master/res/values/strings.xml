@@ -87,5 +87,6 @@
     <string name="read">Read</string>
     <string name="app_not_installed">%s is not installed in your phone. Please install it first. It\'s %s requirement\'s to claim the reward</string>
 
+    <string name="tips"><b>Tip:</b> The way to open the reward link is to jump to MM app, it will just take little time don\'t worry. You must install MM app to collect the reward!</string>
 
 </resources>

@@ -21,7 +21,7 @@ import com.freespinslink.user.R
 import com.freespinslink.user.ads.unity.UnityMediationManager
 import com.freespinslink.user.controller.RatingController
 import com.freespinslink.user.databinding.FragmentRewardsBinding
-import com.freespinslink.user.dialog.ProgressDialog
+import com.freespinslink.user.views.dialog.ProgressDialog
 import com.freespinslink.user.enums.EnumCtaType
 import com.freespinslink.user.listeners.OnRewardOpen
 import com.freespinslink.user.listeners.UnityIntAdListener
@@ -86,11 +86,15 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
     }
 
     override fun onOpen(rewards: Rewards, position: Int, type: String) {
-        rewardCtaType = type
-        selectedReward = rewards
-        selectedPosition = position
+        if (Constants.isAppInstalled(requireContext())) {
+            rewardCtaType = type
+            selectedReward = rewards
+            selectedPosition = position
 
-        adDecision(rewards)
+            adDecision(rewards)
+        } else {
+            findNavController().navigate(RewardsFragmentDirections.actionRewardsFragmentToRouteToPlaystoreDialog())
+        }
     }
 
     override fun onIntAdCloseOrFail() {
@@ -122,12 +126,12 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
 
     private fun setupObservers() {
 
-        rewardsViewModel.rewards.observe(viewLifecycleOwner, Observer {
+        rewardsViewModel.rewards.observe(viewLifecycleOwner) {
             if (it != null)
                 lifecycleScope.launch {
                     rewardsAdapter.submitData(it)
                 }
-        })
+        }
 
         rewardsViewModel.updateReward.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { reward ->
@@ -229,9 +233,9 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
 
         AlertDialog.Builder(requireContext())
             .setTitle("")
-            .setMessage("You are about to watch an interstitial ads, Which is also known as full screen ads.")
+            .setMessage(requireContext().getString(R.string.ad_decision_desc))
             .setCancelable(false)
-            .setPositiveButton("Watch Ads") { dialog, which ->
+            .setPositiveButton(requireContext().getString(R.string.ad_decision_positive_btn)) { dialog, which ->
                 progressDialog.show()
 
                 if (rewardCtaType == EnumCtaType.API_CALL.value) {
@@ -240,6 +244,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
                     unityMediationManager.showIntAd()
                 }
 
-            }.setNegativeButton("No, thanks") { dialog, which -> }.show()
+            }.setNegativeButton(requireContext().getString(R.string.ad_decision_negative_btn)) { dialog, which -> }.show()
+
     }
 }

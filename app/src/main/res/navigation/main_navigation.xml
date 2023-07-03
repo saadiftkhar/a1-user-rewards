@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_rewardsFragment_to_rewardDetailsFragment"
             app:destination="@id/rewardDetailsFragment" />
+        <action
+            android:id="@+id/action_rewardsFragment_to_routeToPlaystoreDialog"
+            app:destination="@id/routeToPlaystoreDialog" />
     </fragment>
     <fragment
         android:id="@+id/rewardDetailsFragment"
@@ -61,4 +64,9 @@
             app:argType="com.freespinslink.user.model.Rewards"
             app:nullable="true" />
     </dialog>
+    <dialog
+        android:id="@+id/routeToPlaystoreDialog"
+        android:name="com.freespinslink.user.views.dialog.RouteToPlaystoreDialog"
+        android:label="dialog_route_to_playstore"
+        tools:layout="@layout/dialog_route_to_playstore" />
 </navigation>
