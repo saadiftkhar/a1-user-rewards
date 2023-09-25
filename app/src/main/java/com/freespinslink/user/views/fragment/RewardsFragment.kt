@@ -102,7 +102,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
     }
 
     private fun setupInit() {
-        progressDialog = ProgressDialog(requireActivity())
+        progressDialog = ProgressDialog(requireContext())
         unityMediationManager.initMediation()
         setupRecyclerView()
     }
@@ -194,7 +194,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
 
         rewardsViewModel.updateRewardFailed.postValue(false)
 
-        if (!progressDialog.isShowing()) {
+        if (!progressDialog.isShowing) {
             findNavController().navigate(
                 RewardsFragmentDirections.actionRewardsFragmentToRewardDetailsFragment(
                     selectedReward

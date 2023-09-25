@@ -46,7 +46,7 @@ class MyFirebaseMessage : FirebaseMessagingService() {
         val intent = Intent(applicationContext, SplashActivity::class.java)
 
         val pendingIntent = try {
-            PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+            PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         } catch (e: Exception) {
             null
         }
