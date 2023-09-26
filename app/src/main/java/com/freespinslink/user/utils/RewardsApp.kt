@@ -34,8 +34,7 @@ class RewardsApp : Application() {
         SharedStorage.incSessionCount()
 
         FirebaseMessaging.getInstance()
-//            .subscribeToTopic(BUILD_FLAVOUR.lowercase()) // format -> dice_dreams
-            .subscribeToTopic("test_a1") // format -> test_a1
+            .subscribeToTopic(BUILD_FLAVOUR.lowercase()) // format -> dice_dreams
         androidId = getAndroidId()
     }
 
