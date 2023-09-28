@@ -5,7 +5,7 @@ dependencyResolutionManagement {
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
         maven {
-            url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
+            url 'https://android-sdk.is.com/'
         }
     }
 }

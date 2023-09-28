@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.Intent.ACTION_SENDTO
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,24 +19,31 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.freespinslink.user.R
-import com.freespinslink.user.ads.unity.UnityMediationManager
+import com.freespinslink.user.ads.unity.AdsConfig
+import com.freespinslink.user.ads.unity.MediationManager
 import com.freespinslink.user.controller.RatingController
 import com.freespinslink.user.databinding.FragmentRewardsBinding
 import com.freespinslink.user.views.dialog.ProgressDialog
 import com.freespinslink.user.enums.EnumCtaType
+import com.freespinslink.user.enums.EnumScreens
 import com.freespinslink.user.listeners.OnRewardOpen
-import com.freespinslink.user.listeners.UnityIntAdListener
+import com.freespinslink.user.listeners.InterstitialAdListener
 import com.freespinslink.user.model.RewardViews
 import com.freespinslink.user.model.Rewards
 import com.freespinslink.user.utils.*
 import com.freespinslink.user.utils.Constants.SUPPORT_EMAIL
 import com.freespinslink.user.utils.Constants.getPPUrl
 import com.freespinslink.user.viewmodel.RewardsViewModel
+import com.freespinslink.user.views.activity.StartupActivity
 import com.freespinslink.user.views.adapter.RewardsPagingAdapter
+import com.ironsource.adapters.supersonicads.SupersonicConfig
+import com.ironsource.mediationsdk.IronSource
+import com.ironsource.mediationsdk.integration.IntegrationHelper
+import com.ironsource.mediationsdk.sdk.InitializationListener
 import kotlinx.coroutines.launch
 
 
-class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityIntAdListener {
+class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, InterstitialAdListener {
 
     private lateinit var binding: FragmentRewardsBinding
 
@@ -52,9 +60,10 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
     private val ratingController: RatingController by lazy { RatingController(requireActivity()) }
 
     private lateinit var selectedReward: Rewards
+    private val navController by lazy { findNavController() }
 
-    private val unityMediationManager: UnityMediationManager by lazy {
-        UnityMediationManager(this, requireActivity(), binding.bannerView)
+    private val unityMediationManager: MediationManager by lazy {
+        MediationManager(this, requireActivity(), binding.bannerView)
     }
 
 
@@ -103,7 +112,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
 
     private fun setupInit() {
         progressDialog = ProgressDialog(requireContext())
-        unityMediationManager.initMediation()
+        unityMediationManager.initAds()
         setupRecyclerView()
     }
 
@@ -133,19 +142,20 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
                 }
         }
 
-        rewardsViewModel.updateReward.observe(viewLifecycleOwner, Observer {
+        rewardsViewModel.updateReward.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { reward ->
+                progressDialog.dismiss()
                 selectedReward = reward
                 rewardsAdapter.update(reward, selectedPosition)
-                unityMediationManager.showIntAd()
+                unityMediationManager.showIntAd(EnumScreens.REWARDS.value)
             }
-        })
+        }
 
-        rewardsViewModel.updateRewardFailed.observe(viewLifecycleOwner, Observer {
+        rewardsViewModel.updateRewardFailed.observe(viewLifecycleOwner) {
             if (it) {
-                unityMediationManager.showIntAd()
+                unityMediationManager.showIntAd(EnumScreens.REWARDS.value)
             }
-        })
+        }
     }
 
     private fun setupRecyclerView() {
@@ -162,6 +172,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
                 loadState.append is LoadState.Loading -> {
                     binding.progressBar.isVisible = true
                 }
+
                 else -> {
                     binding.progressBar.isVisible = false
                     binding.swipeRefresh.isRefreshing = false
@@ -190,17 +201,13 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
     }
 
     private fun openDetails() {
-        progressDialog.dismiss()
-
         rewardsViewModel.updateRewardFailed.postValue(false)
-
-        if (!progressDialog.isShowing) {
-            findNavController().navigate(
-                RewardsFragmentDirections.actionRewardsFragmentToRewardDetailsFragment(
-                    selectedReward
-                )
+        Log.d("RewardsFragment", "openDetails: ${navController.currentDestination}")
+        navController.navigate(
+            RewardsFragmentDirections.actionRewardsFragmentToRewardDetailsFragment(
+                selectedReward
             )
-        } else openDetails()
+        )
     }
 
     private fun onClickShare() {
@@ -241,10 +248,13 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, UnityInt
                 if (rewardCtaType == EnumCtaType.API_CALL.value) {
                     onUpdateReward(rewards.id)
                 } else if (rewardCtaType == EnumCtaType.NO_API_CALL.value) {
-                    unityMediationManager.showIntAd()
+                    progressDialog.dismiss()
+                    unityMediationManager.showIntAd(EnumScreens.REWARDS.value)
                 }
 
-            }.setNegativeButton(requireContext().getString(R.string.ad_decision_negative_btn)) { dialog, which -> }.show()
+            }
+            .setNegativeButton(requireContext().getString(R.string.ad_decision_negative_btn)) { dialog, which -> }
+            .show()
 
     }
 }

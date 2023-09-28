@@ -5,10 +5,7 @@ buildscript {
         mavenCentral()
         flatDir { dirs 'libs' }
         maven { url "https://maven.google.com/"}
-        maven { url = uri("https://artifacts.applovin.com/android") }
-        maven {
-            url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
-        }
+        maven {url 'https://android-sdk.is.com/'}
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"

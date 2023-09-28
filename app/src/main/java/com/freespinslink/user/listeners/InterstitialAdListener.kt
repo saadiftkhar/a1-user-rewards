@@ -1,5 +1,5 @@
 package com.freespinslink.user.listeners
 
-interface UnityIntAdListener {
+interface InterstitialAdListener {
     fun onIntAdCloseOrFail()
 }

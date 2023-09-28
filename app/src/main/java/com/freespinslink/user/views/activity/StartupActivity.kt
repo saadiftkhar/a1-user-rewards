@@ -9,9 +9,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.freespinslink.user.R
+import com.freespinslink.user.ads.unity.AdsConfig
+import com.freespinslink.user.utils.AdsDebugConstants
 import com.freespinslink.user.utils.SharedStorage
-import com.freespinslink.user.utils.showToast
 import com.freespinslink.user.views.fragment.PrivacyPolicyFragmentDirections
+import com.ironsource.adapters.supersonicads.SupersonicConfig
+import com.ironsource.mediationsdk.IronSource
+import com.ironsource.mediationsdk.impressionData.ImpressionData
+import com.ironsource.mediationsdk.impressionData.ImpressionDataListener
+import com.ironsource.mediationsdk.integration.IntegrationHelper
+import com.ironsource.mediationsdk.logger.IronSourceError
+import com.ironsource.mediationsdk.sdk.InitializationListener
+import com.ironsource.mediationsdk.sdk.InterstitialListener
 
 class StartupActivity : AppCompatActivity() {
 
@@ -44,6 +53,16 @@ class StartupActivity : AppCompatActivity() {
         else finish()
     }
 
+    override fun onResume() {
+        super.onResume()
+        IronSource.onResume(this) // without this ads will not work
+    }
+
+    override fun onPause() {
+        super.onPause()
+        IronSource.onPause(this)
+    }
+
     private fun setupViews() {
         navigationController = Navigation.findNavController(this, R.id.mainHostFragment)
 
@@ -55,16 +74,17 @@ class StartupActivity : AppCompatActivity() {
         }
     }
 
-    private val notificationPermissionResult = registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
-        if (result) {
-            // notification permission granted
-        } else {
-            // Handle the case when one or more permissions were not granted
+    private val notificationPermissionResult =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
+            if (result) {
+                // notification permission granted
+            } else {
+                // Handle the case when one or more permissions were not granted
+            }
+
+            Log.d("NOTIFICATION_PERMISSION", "$result")
+
         }
-
-        Log.d("NOTIFICATION_PERMISSION", "$result")
-
-    }
 
     private fun requestNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
