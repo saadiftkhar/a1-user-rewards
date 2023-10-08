@@ -8,19 +8,16 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.facebook.ads.AdSettings
 import com.freespinslink.user.R
 import com.freespinslink.user.ads.unity.AdsConfig
-import com.freespinslink.user.utils.AdsDebugConstants
+import com.freespinslink.user.utils.AppConfig
 import com.freespinslink.user.utils.SharedStorage
 import com.freespinslink.user.views.fragment.PrivacyPolicyFragmentDirections
 import com.ironsource.adapters.supersonicads.SupersonicConfig
 import com.ironsource.mediationsdk.IronSource
-import com.ironsource.mediationsdk.impressionData.ImpressionData
-import com.ironsource.mediationsdk.impressionData.ImpressionDataListener
 import com.ironsource.mediationsdk.integration.IntegrationHelper
-import com.ironsource.mediationsdk.logger.IronSourceError
 import com.ironsource.mediationsdk.sdk.InitializationListener
-import com.ironsource.mediationsdk.sdk.InterstitialListener
 
 class StartupActivity : AppCompatActivity() {
 
@@ -39,7 +36,9 @@ class StartupActivity : AppCompatActivity() {
             }
         }
 
+        initializeAds()
         requestNotificationPermission()
+
 
     }
 
@@ -92,6 +91,28 @@ class StartupActivity : AppCompatActivity() {
                 Manifest.permission.POST_NOTIFICATIONS
             )
         }
+    }
+
+    private fun initializeAds() {
+        IronSource.shouldTrackNetworkState(this, true)
+        if (AppConfig.isTestMode()) {
+            IntegrationHelper.validateIntegration(this) // The integrationHelper is used to validate the integration. Remove the integrationHelper before going live!
+            IronSource.setMetaData("is_test_suite", "enable")
+        }
+
+        SupersonicConfig.getConfigObj().clientSideCallbacks = true
+        IronSource.setUserId(IronSource.getAdvertiserId(this))
+        IronSource.setMetaData("Facebook_IS_CacheFlag", "IMAGE")
+        IronSource.init(this, AdsConfig().appKey, object : InitializationListener {
+            override fun onInitializationComplete() {
+                if (AppConfig.isTestMode()) {
+                    AdSettings.addTestDevice("bdbc42a8-fdf8-4f2b-ad33-46ea90f20fb0")
+                    IronSource.launchTestSuite(this@StartupActivity)
+                    Log.d(javaClass.simpleName, "onInitializationComplete: true")
+                }
+            }
+        })
+
     }
 
 }

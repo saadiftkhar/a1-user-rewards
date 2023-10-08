@@ -10,8 +10,6 @@ open class AdsConfig {
     val demoAppKey = "85460dcd"
     protected val bannerPlacement = "DefaultBanner"
     protected val intPlacement1 = "DefaultInterstitial"
-    protected val intPlacement2 = "Game_Screen"
-    protected val isTestMode = false
 
     init {
         setupAdsIds()

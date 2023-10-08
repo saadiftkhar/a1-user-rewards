@@ -13,13 +13,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.freespinslink.user.R
+import com.freespinslink.user.ads.unity.MediationManager
 import com.freespinslink.user.databinding.FragmentRewardDetailsBinding
+import com.freespinslink.user.listeners.InterstitialAdListener
 import com.freespinslink.user.model.Rewards
 import com.freespinslink.user.utils.Arguments
 import com.freespinslink.user.utils.Constants
 import com.freespinslink.user.utils.SharedStorage
 
-class RewardDetailsFragment : Fragment(), View.OnClickListener {
+class RewardDetailsFragment : Fragment(), View.OnClickListener, InterstitialAdListener {
 
 
     private lateinit var binding: FragmentRewardDetailsBinding
@@ -27,6 +29,8 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
     private lateinit var rewardDetails: Rewards
 
     private val navController by lazy { findNavController() }
+
+    private val unityMediationManager: MediationManager by lazy { MediationManager(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +59,14 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.iv_back_press -> findNavController().popBackStack()
-            R.id.tv_claim -> handleRewardsSheet()
+            R.id.tv_claim -> unityMediationManager.showIntAd()
         }
     }
 
+
+    override fun onIntAdCloseOrFail() {
+        handleRewardsSheet()
+    }
 
     private fun setupViews() {
 
@@ -75,7 +83,8 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
         if (Constants.isAppInstalled(requireContext())) {
             if (rewardDetails.isRedeemCode())
                 showCopyCodeSheet()
-            else showConsentSheet()
+            else
+                showConsentSheet()
         } else {
             binding.tvError.let {
                 it.isVisible = true
@@ -119,5 +128,6 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
 
         }
     }
+
 
 }

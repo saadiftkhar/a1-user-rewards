@@ -1,66 +1,40 @@
 package com.freespinslink.user.ads.unity
 
+import android.app.Activity
+import android.content.Context
 import android.util.Log
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
-import com.freespinslink.user.enums.EnumScreens
 import com.freespinslink.user.listeners.InterstitialAdListener
-import com.freespinslink.user.utils.AdsDebugConstants
-import com.ironsource.adapters.supersonicads.SupersonicConfig
 import com.ironsource.mediationsdk.ISBannerSize
 import com.ironsource.mediationsdk.IronSource
 import com.ironsource.mediationsdk.IronSourceBannerLayout
 import com.ironsource.mediationsdk.adunit.adapter.utility.AdInfo
-import com.ironsource.mediationsdk.integration.IntegrationHelper
 import com.ironsource.mediationsdk.logger.IronSourceError
-import com.ironsource.mediationsdk.sdk.InitializationListener
 import com.ironsource.mediationsdk.sdk.LevelPlayBannerListener
 import com.ironsource.mediationsdk.sdk.LevelPlayInterstitialListener
 
 
 class MediationManager(
     val listener: InterstitialAdListener,
-    val context: FragmentActivity,
-    val bannerView: FrameLayout
 ) : AdsConfig() {
 
-    fun initAds() {
-        IronSource.shouldTrackNetworkState(context, true)
-        if (isTestMode) {
-            IntegrationHelper.validateIntegration(context) // The integrationHelper is used to validate the integration. Remove the integrationHelper before going live!
-            IronSource.setMetaData("is_test_suite", "enable")
-        }
-
-        SupersonicConfig.getConfigObj().clientSideCallbacks = true
-        IronSource.setUserId(IronSource.getAdvertiserId(context))
-        IronSource.init(context, AdsConfig().demoAppKey, object : InitializationListener {
-            override fun onInitializationComplete() {
-                IronSource.launchTestSuite(context)
-                Log.d(javaClass.simpleName, "onInitializationComplete: true")
-            }
-        })
-
-        Log.d(javaClass.simpleName, "initMediation: ")
-        showBannerAds()
-        loadInterstitialAd()
-
-    }
-
-    private fun showBannerAds() {
-        val banner: IronSourceBannerLayout = IronSource.createBanner(context, ISBannerSize.BANNER)
+    fun showBannerAds(context: Context, bannerView: FrameLayout? = null) {
+        val banner: IronSourceBannerLayout =
+            IronSource.createBanner(context as Activity, ISBannerSize.BANNER)
         banner.let {
             val layoutParams = FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT
             )
-            bannerView.addView(it, 0, layoutParams)
+            bannerView?.addView(it, 0, layoutParams)
         }
 
         banner.levelPlayBannerListener = object : LevelPlayBannerListener {
             override fun onAdLoaded(adInfo: AdInfo) {
                 Log.d("Banner_Ad_Result", "onAdLoaded: $adInfo")
-                bannerView.isVisible = true
+                bannerView?.isVisible = true
             }
 
             override fun onAdLoadFailed(error: IronSourceError) {
@@ -84,7 +58,7 @@ class MediationManager(
     /*****************
     Interstitial Ad
      */
-    private fun loadInterstitialAd() {
+    fun loadInterstitialAd() {
         IronSource.loadInterstitial()
         IronSource.setLevelPlayInterstitialListener(object : LevelPlayInterstitialListener {
             override fun onAdReady(adInfo: AdInfo) {
@@ -118,12 +92,9 @@ class MediationManager(
 
     }
 
-    fun showIntAd(screen: String) {
+    fun showIntAd() {
         if (IronSource.isInterstitialReady()) {
-            if (screen == EnumScreens.REWARDS.value)
-                IronSource.showInterstitial(intPlacement1)
-            else
-                IronSource.showInterstitial(intPlacement2)
+            IronSource.showInterstitial(intPlacement1)
         } else
             listener.onIntAdCloseOrFail()
     }

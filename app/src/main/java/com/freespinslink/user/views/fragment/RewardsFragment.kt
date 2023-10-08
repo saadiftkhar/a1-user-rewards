@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.Intent.ACTION_SENDTO
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,33 +12,29 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.freespinslink.user.R
-import com.freespinslink.user.ads.unity.AdsConfig
 import com.freespinslink.user.ads.unity.MediationManager
 import com.freespinslink.user.controller.RatingController
 import com.freespinslink.user.databinding.FragmentRewardsBinding
-import com.freespinslink.user.views.dialog.ProgressDialog
 import com.freespinslink.user.enums.EnumCtaType
-import com.freespinslink.user.enums.EnumScreens
-import com.freespinslink.user.listeners.OnRewardOpen
 import com.freespinslink.user.listeners.InterstitialAdListener
+import com.freespinslink.user.listeners.OnRewardOpen
 import com.freespinslink.user.model.RewardViews
 import com.freespinslink.user.model.Rewards
-import com.freespinslink.user.utils.*
+import com.freespinslink.user.utils.Constants
 import com.freespinslink.user.utils.Constants.SUPPORT_EMAIL
 import com.freespinslink.user.utils.Constants.getPPUrl
+import com.freespinslink.user.utils.RewardsApp
+import com.freespinslink.user.utils.SharedStorage
+import com.freespinslink.user.utils.openInBrowser
+import com.freespinslink.user.utils.showToast
 import com.freespinslink.user.viewmodel.RewardsViewModel
-import com.freespinslink.user.views.activity.StartupActivity
 import com.freespinslink.user.views.adapter.RewardsPagingAdapter
-import com.ironsource.adapters.supersonicads.SupersonicConfig
-import com.ironsource.mediationsdk.IronSource
-import com.ironsource.mediationsdk.integration.IntegrationHelper
-import com.ironsource.mediationsdk.sdk.InitializationListener
+import com.freespinslink.user.views.dialog.ProgressDialog
 import kotlinx.coroutines.launch
 
 
@@ -62,9 +57,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
     private lateinit var selectedReward: Rewards
     private val navController by lazy { findNavController() }
 
-    private val unityMediationManager: MediationManager by lazy {
-        MediationManager(this, requireActivity(), binding.bannerView)
-    }
+    private val adsManager: MediationManager by lazy { MediationManager(this) }
 
 
     override fun onCreateView(
@@ -78,6 +71,9 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adsManager.showBannerAds(requireContext(), binding.bannerView)
+        adsManager.loadInterstitialAd()
 
         setupInit()
         setupViews()
@@ -112,7 +108,6 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
 
     private fun setupInit() {
         progressDialog = ProgressDialog(requireContext())
-        unityMediationManager.initAds()
         setupRecyclerView()
     }
 
@@ -131,6 +126,8 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
         binding.ivShare.setOnClickListener(this)
         binding.ivPrivacyPolicy.setOnClickListener(this)
         binding.ivSupport.setOnClickListener(this)
+
+
     }
 
     private fun setupObservers() {
@@ -147,13 +144,13 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
                 progressDialog.dismiss()
                 selectedReward = reward
                 rewardsAdapter.update(reward, selectedPosition)
-                unityMediationManager.showIntAd(EnumScreens.REWARDS.value)
+                adsManager.showIntAd()
             }
         }
 
         rewardsViewModel.updateRewardFailed.observe(viewLifecycleOwner) {
             if (it) {
-                unityMediationManager.showIntAd(EnumScreens.REWARDS.value)
+                adsManager.showIntAd()
             }
         }
     }
@@ -200,14 +197,16 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
         rewardsViewModel.updateView(rewardViews)
     }
 
+
     private fun openDetails() {
-        rewardsViewModel.updateRewardFailed.postValue(false)
-        Log.d("RewardsFragment", "openDetails: ${navController.currentDestination}")
-        navController.navigate(
-            RewardsFragmentDirections.actionRewardsFragmentToRewardDetailsFragment(
-                selectedReward
+        if (navController.currentDestination == navController.findDestination(R.id.rewardsFragment)) {
+            rewardsViewModel.updateRewardFailed.postValue(false)
+            navController.navigate(
+                RewardsFragmentDirections.actionRewardsFragmentToRewardDetailsFragment(
+                    selectedReward
+                )
             )
-        )
+        }
     }
 
     private fun onClickShare() {
@@ -249,7 +248,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
                     onUpdateReward(rewards.id)
                 } else if (rewardCtaType == EnumCtaType.NO_API_CALL.value) {
                     progressDialog.dismiss()
-                    unityMediationManager.showIntAd(EnumScreens.REWARDS.value)
+                    adsManager.showIntAd()
                 }
 
             }
