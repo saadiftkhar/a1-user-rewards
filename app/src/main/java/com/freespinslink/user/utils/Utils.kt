@@ -8,6 +8,7 @@
 package com.freespinslink.user.utils
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -21,12 +22,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import com.freespinslink.user.R
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.concurrent.schedule
 
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
@@ -136,5 +135,3 @@ fun Context.copyToClipboard(clipLabel: String, text: CharSequence) {
     clipboard?.setPrimaryClip(ClipData.newPlainText(clipLabel, text))
     showToast(text.toString())
 }
-
-

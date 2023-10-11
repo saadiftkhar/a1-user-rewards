@@ -103,7 +103,7 @@ class StartupActivity : AppCompatActivity() {
         SupersonicConfig.getConfigObj().clientSideCallbacks = true
         IronSource.setUserId(IronSource.getAdvertiserId(this))
         IronSource.setMetaData("Facebook_IS_CacheFlag", "IMAGE")
-        IronSource.init(this, AdsConfig().appKey, object : InitializationListener {
+        IronSource.init(this, AdsConfig.appKey, object : InitializationListener {
             override fun onInitializationComplete() {
                 if (AppConfig.isTestMode()) {
                     AdSettings.addTestDevice("bdbc42a8-fdf8-4f2b-ad33-46ea90f20fb0")

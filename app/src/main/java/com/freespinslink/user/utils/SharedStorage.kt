@@ -9,6 +9,7 @@ object SharedStorage : SharedPrefHelper(RewardsConfig.PREF_NAME) {
     private const val NOT_SHOW_DIALOG_AGAIN = "not_show_this_dialog_again"
     private const val CURRENT_SESSIONS = "current_sessions"
     private const val RATING_STATE = "rating_state"
+    private const val REWARD_DETAIL_SCREEN_OPENED = "reward_detail_screen_opened"
 
 
     @Synchronized
@@ -51,5 +52,14 @@ object SharedStorage : SharedPrefHelper(RewardsConfig.PREF_NAME) {
 
     fun isDialogShowAgain(): Boolean {
         return getBoolean(NOT_SHOW_DIALOG_AGAIN, false)
+    }
+
+    @Synchronized
+    fun saveRewardDetailScreenOpened(value: Boolean) {
+        saveBoolean(REWARD_DETAIL_SCREEN_OPENED, value)
+    }
+
+    fun isRewardDetailScreenOpened(): Boolean {
+        return getBoolean(REWARD_DETAIL_SCREEN_OPENED, false)
     }
 }

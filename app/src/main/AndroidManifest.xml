@@ -11,8 +11,32 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <queries>
+        <package android:name="com.gameease.coindragonmaster" />
+        <package android:name="com.moonactive.coinmaster" />
+        <package android:name="com.moonjoy.cointale" />
+        <package android:name="com.gworld.crazyspin" />
+        <package android:name="com.superplaystudios.dicedreams" />
+        <package android:name="com.funtomic.matchmasters" />
+        <package android:name="com.braveisland.apps.petmaster" />
+        <package android:name="com.aladinfun.piggytravel.android" />
+        <package android:name="com.MelsoftGames.FamilyIslandFarm" />
+        <package android:name="com.hlcb.MafiaMaster" />
+
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="https|http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+
+            <data android:mimeType="text/plain" />
+        </intent>
+    </queries>
+
     <application
-        android:name="com.freespinslink.user.utils.RewardsApp"
+        android:name=".utils.RewardsApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,10 +48,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
         <activity
-            android:name="com.freespinslink.user.views.activity.StartupActivity"
+            android:name=".views.activity.RewardDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.freespinslink.user.views.activity.SplashActivity"
+            android:name=".views.activity.StartupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,8 +85,9 @@
         <provider
             android:name="com.ironsource.lifecycle.IronsourceLifecycleProvider"
             android:authorities="${applicationId}.IronsourceLifecycleProvider" />
+
         <service
-            android:name="com.freespinslink.user.fcm.MyFirebaseMessage"
+            android:name=".fcm.MyFirebaseMessage"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -80,25 +108,4 @@
             android:value="${crashlyticsCollectionEnabled}" />
     </application>
 
-    <queries>
-        <package android:name="com.gameease.coindragonmaster" />
-        <package android:name="com.moonactive.coinmaster" />
-        <package android:name="com.moonjoy.cointale" />
-        <package android:name="com.gworld.crazyspin" />
-        <package android:name="com.superplaystudios.dicedreams" />
-        <package android:name="com.funtomic.matchmasters" />
-        <package android:name="com.braveisland.apps.petmaster" />
-        <package android:name="com.aladinfun.piggytravel.android" />
-        <package android:name="com.MelsoftGames.FamilyIslandFarm" />
-        <package android:name="com.hlcb.MafiaMaster" />
-
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="https|http" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.SEND" />
-            <data android:mimeType="text/plain" />
-        </intent>
-    </queries>
 </manifest>

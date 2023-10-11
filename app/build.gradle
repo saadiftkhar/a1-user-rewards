@@ -91,7 +91,7 @@ android {
             dimension "games"
             applicationId "com.mmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.5"
+            versionName "1.7"
         }
         Pet_Master {
             dimension "games"

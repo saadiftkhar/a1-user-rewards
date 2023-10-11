@@ -5,8 +5,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentActivity
-import com.freespinslink.user.listeners.InterstitialAdListener
+import com.freespinslink.user.enums.EnumScreens
 import com.ironsource.mediationsdk.ISBannerSize
 import com.ironsource.mediationsdk.IronSource
 import com.ironsource.mediationsdk.IronSourceBannerLayout
@@ -16,9 +15,7 @@ import com.ironsource.mediationsdk.sdk.LevelPlayBannerListener
 import com.ironsource.mediationsdk.sdk.LevelPlayInterstitialListener
 
 
-class MediationManager(
-    val listener: InterstitialAdListener,
-) : AdsConfig() {
+class MediationManager {
 
     fun showBannerAds(context: Context, bannerView: FrameLayout? = null) {
         val banner: IronSourceBannerLayout =
@@ -52,7 +49,7 @@ class MediationManager(
 
             override fun onAdLeftApplication(adInfo: AdInfo) {}
         }
-        IronSource.loadBanner(banner, bannerPlacement)
+        IronSource.loadBanner(banner, AdsConfig.bannerPlacement)
     }
 
     /*****************
@@ -77,7 +74,7 @@ class MediationManager(
             override fun onAdClosed(adInfo: AdInfo) {
                 IronSource.loadInterstitial()
                 Log.d(javaClass.simpleName, "onIntAdClosed: $adInfo")
-                listener.onIntAdCloseOrFail()
+//                adCLoseOrFail(true)
             }
 
             override fun onAdShowFailed(error: IronSourceError, adInfo: AdInfo) {
@@ -93,10 +90,10 @@ class MediationManager(
     }
 
     fun showIntAd() {
-        if (IronSource.isInterstitialReady()) {
-            IronSource.showInterstitial(intPlacement1)
-        } else
-            listener.onIntAdCloseOrFail()
+//        if (IronSource.isInterstitialReady()) {
+//            IronSource.showInterstitial(intPlacement)
+//        } else
+//            adCLoseOrFail(true)
     }
 
 }

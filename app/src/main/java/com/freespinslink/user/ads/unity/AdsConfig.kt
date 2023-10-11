@@ -2,14 +2,13 @@ package com.freespinslink.user.ads.unity
 
 import com.freespinslink.user.enums.EnumGames
 import com.freespinslink.user.utils.Constants
-
-open class AdsConfig {
+object AdsConfig {
 
     private val appKeyMap = HashMap<String, String>()
     val appKey get() = appKeyMap[Constants.BUILD_FLAVOUR]
     val demoAppKey = "85460dcd"
-    protected val bannerPlacement = "DefaultBanner"
-    protected val intPlacement1 = "DefaultInterstitial"
+    val bannerPlacement = "DefaultBanner"
+    val intPlacement = "DefaultInterstitial"
 
     init {
         setupAdsIds()

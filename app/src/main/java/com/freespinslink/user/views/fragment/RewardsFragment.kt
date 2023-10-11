@@ -1,12 +1,16 @@
 package com.freespinslink.user.views.fragment
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_SENDTO
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -17,14 +21,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.freespinslink.user.R
+import com.freespinslink.user.ads.unity.AdsConfig
 import com.freespinslink.user.ads.unity.MediationManager
 import com.freespinslink.user.controller.RatingController
 import com.freespinslink.user.databinding.FragmentRewardsBinding
 import com.freespinslink.user.enums.EnumCtaType
-import com.freespinslink.user.listeners.InterstitialAdListener
+import com.freespinslink.user.enums.EnumScreens
 import com.freespinslink.user.listeners.OnRewardOpen
 import com.freespinslink.user.model.RewardViews
 import com.freespinslink.user.model.Rewards
+import com.freespinslink.user.utils.Arguments
 import com.freespinslink.user.utils.Constants
 import com.freespinslink.user.utils.Constants.SUPPORT_EMAIL
 import com.freespinslink.user.utils.Constants.getPPUrl
@@ -33,12 +39,20 @@ import com.freespinslink.user.utils.SharedStorage
 import com.freespinslink.user.utils.openInBrowser
 import com.freespinslink.user.utils.showToast
 import com.freespinslink.user.viewmodel.RewardsViewModel
+import com.freespinslink.user.views.activity.RewardDetailActivity
 import com.freespinslink.user.views.adapter.RewardsPagingAdapter
 import com.freespinslink.user.views.dialog.ProgressDialog
+import com.ironsource.mediationsdk.ISBannerSize
+import com.ironsource.mediationsdk.IronSource
+import com.ironsource.mediationsdk.IronSourceBannerLayout
+import com.ironsource.mediationsdk.adunit.adapter.utility.AdInfo
+import com.ironsource.mediationsdk.logger.IronSourceError
+import com.ironsource.mediationsdk.sdk.LevelPlayBannerListener
+import com.ironsource.mediationsdk.sdk.LevelPlayInterstitialListener
 import kotlinx.coroutines.launch
 
 
-class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, InterstitialAdListener {
+class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener {
 
     private lateinit var binding: FragmentRewardsBinding
 
@@ -55,9 +69,9 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
     private val ratingController: RatingController by lazy { RatingController(requireActivity()) }
 
     private lateinit var selectedReward: Rewards
-    private val navController by lazy { findNavController() }
 
-    private val adsManager: MediationManager by lazy { MediationManager(this) }
+//    private val adsManager: MediationManager by lazy { }
+//    }
 
 
     override fun onCreateView(
@@ -72,8 +86,8 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adsManager.showBannerAds(requireContext(), binding.bannerView)
-        adsManager.loadInterstitialAd()
+        showBannerAds(requireContext(), binding.bannerView)
+        loadInterstitialAd()
 
         setupInit()
         setupViews()
@@ -100,10 +114,6 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
         } else {
             findNavController().navigate(RewardsFragmentDirections.actionRewardsFragmentToRouteToPlaystoreDialog())
         }
-    }
-
-    override fun onIntAdCloseOrFail() {
-        openDetails()
     }
 
     private fun setupInit() {
@@ -144,13 +154,13 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
                 progressDialog.dismiss()
                 selectedReward = reward
                 rewardsAdapter.update(reward, selectedPosition)
-                adsManager.showIntAd()
+                showIntAd()
             }
         }
 
         rewardsViewModel.updateRewardFailed.observe(viewLifecycleOwner) {
             if (it) {
-                adsManager.showIntAd()
+                showIntAd()
             }
         }
     }
@@ -199,14 +209,14 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
 
 
     private fun openDetails() {
-        if (navController.currentDestination == navController.findDestination(R.id.rewardsFragment)) {
-            rewardsViewModel.updateRewardFailed.postValue(false)
-            navController.navigate(
-                RewardsFragmentDirections.actionRewardsFragmentToRewardDetailsFragment(
-                    selectedReward
-                )
-            )
-        }
+        rewardsViewModel.updateRewardFailed.postValue(false)
+
+//        if (!SharedStorage.isRewardDetailScreenOpened()) {
+            val intent = Intent(requireContext(), RewardDetailActivity::class.java)
+            intent.putExtra(Arguments.REWARD_DETAILS, selectedReward)
+            startActivity(intent)
+//        }
+
     }
 
     private fun onClickShare() {
@@ -248,7 +258,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
                     onUpdateReward(rewards.id)
                 } else if (rewardCtaType == EnumCtaType.NO_API_CALL.value) {
                     progressDialog.dismiss()
-                    adsManager.showIntAd()
+                    showIntAd()
                 }
 
             }
@@ -256,4 +266,79 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, Intersti
             .show()
 
     }
+    fun showBannerAds(context: Context, bannerView: FrameLayout? = null) {
+        val banner: IronSourceBannerLayout =
+            IronSource.createBanner(context as Activity, ISBannerSize.BANNER)
+        banner.let {
+            val layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+            bannerView?.addView(it, 0, layoutParams)
+        }
+
+        banner.levelPlayBannerListener = object : LevelPlayBannerListener {
+            override fun onAdLoaded(adInfo: AdInfo) {
+                Log.d("Banner_Ad_Result", "onAdLoaded: $adInfo")
+                bannerView?.isVisible = true
+            }
+
+            override fun onAdLoadFailed(error: IronSourceError) {
+                Log.d(
+                    "Banner_Ad_Result",
+                    "onAdLoadFailed: ${error.errorCode} - ${error.errorMessage}"
+                )
+            }
+
+            override fun onAdClicked(adInfo: AdInfo) {}
+
+            override fun onAdScreenPresented(adInfo: AdInfo) {}
+
+            override fun onAdScreenDismissed(adInfo: AdInfo) {}
+
+            override fun onAdLeftApplication(adInfo: AdInfo) {}
+        }
+        IronSource.loadBanner(banner, AdsConfig.bannerPlacement)
+    }
+    fun loadInterstitialAd() {
+        IronSource.loadInterstitial()
+        IronSource.setLevelPlayInterstitialListener(object : LevelPlayInterstitialListener {
+            override fun onAdReady(adInfo: AdInfo) {
+                Log.d("Interstitial_Ad_Result", "onAdReady: $adInfo")
+            }
+
+            override fun onAdLoadFailed(error: IronSourceError) {
+                Log.d(
+                    "Interstitial_Ad_Result",
+                    "onAdLoadFailed: ${error.errorCode} - ${error.errorMessage}"
+                )
+            }
+
+            override fun onAdOpened(adInfo: AdInfo) {}
+
+            override fun onAdClosed(adInfo: AdInfo) {
+                openDetails()
+                IronSource.loadInterstitial()
+                Log.d(javaClass.simpleName, "onIntAdClosed: $adInfo")
+            }
+
+            override fun onAdShowFailed(error: IronSourceError, adInfo: AdInfo) {
+                IronSource.loadInterstitial()
+                Log.d(javaClass.simpleName, "onIntAdShowFailed: ${error.errorMessage} \n $adInfo")
+            }
+
+            override fun onAdClicked(adInfo: AdInfo) {}
+
+            override fun onAdShowSucceeded(adInfo: AdInfo) {}
+        })
+
+    }
+
+    private fun showIntAd() {
+        if (IronSource.isInterstitialReady()) {
+            IronSource.showInterstitial(AdsConfig.intPlacement)
+        } else
+            openDetails()
+    }
+
 }
