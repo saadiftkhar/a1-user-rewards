@@ -70,10 +70,6 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener {
 
     private lateinit var selectedReward: Rewards
 
-//    private val adsManager: MediationManager by lazy { }
-//    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -211,11 +207,11 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener {
     private fun openDetails() {
         rewardsViewModel.updateRewardFailed.postValue(false)
 
-//        if (!SharedStorage.isRewardDetailScreenOpened()) {
+        if (::selectedReward.isInitialized) {
             val intent = Intent(requireContext(), RewardDetailActivity::class.java)
             intent.putExtra(Arguments.REWARD_DETAILS, selectedReward)
             startActivity(intent)
-//        }
+        }
 
     }
 

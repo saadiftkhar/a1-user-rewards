@@ -1,6 +1,7 @@
 package com.freespinslink.user.views.activity
 
 import android.Manifest
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.freespinslink.user.utils.AppConfig
 import com.freespinslink.user.utils.SharedStorage
 import com.freespinslink.user.views.fragment.PrivacyPolicyFragmentDirections
 import com.ironsource.adapters.supersonicads.SupersonicConfig
+import com.ironsource.mediationsdk.ISBannerSize
 import com.ironsource.mediationsdk.IronSource
 import com.ironsource.mediationsdk.integration.IntegrationHelper
 import com.ironsource.mediationsdk.sdk.InitializationListener
@@ -105,6 +107,9 @@ class StartupActivity : AppCompatActivity() {
         IronSource.setMetaData("Facebook_IS_CacheFlag", "IMAGE")
         IronSource.init(this, AdsConfig.appKey, object : InitializationListener {
             override fun onInitializationComplete() {
+                IronSource.loadBanner(IronSource.createBanner(this@StartupActivity, ISBannerSize.BANNER), AdsConfig.bannerPlacement)
+                IronSource.loadInterstitial()
+
                 if (AppConfig.isTestMode()) {
                     AdSettings.addTestDevice("bdbc42a8-fdf8-4f2b-ad33-46ea90f20fb0")
                     IronSource.launchTestSuite(this@StartupActivity)
