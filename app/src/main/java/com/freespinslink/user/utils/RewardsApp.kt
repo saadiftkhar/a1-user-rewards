@@ -36,6 +36,7 @@ class RewardsApp : Application() {
         FirebaseMessaging.getInstance()
             .subscribeToTopic(BUILD_FLAVOUR.lowercase()) // format -> dice_dreams
         androidId = getAndroidId()
+
     }
 
     @SuppressLint("HardwareIds")

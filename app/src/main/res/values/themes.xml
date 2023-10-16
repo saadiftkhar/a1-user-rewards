@@ -40,4 +40,15 @@
         <item name="behavior_peekHeight">@dimen/_450sdp</item>
     </style>
 
+
+    <style name="CustomProgressDialogStyleFamily" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.60</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/Transparent</item>
+        <item name="colorPrimaryDark">@color/Transparent</item>
+        <item name="colorAccent">@color/Transparent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 </resources>

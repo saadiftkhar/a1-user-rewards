@@ -1,8 +1,9 @@
 package com.freespinslink.user.utils
 
-class AdsDebugConstants {
+class AppConfig {
     companion object {
         fun isAdsDebugger() = false
         fun isTestDevicesIds() = false
+        fun isTestMode() = false
     }
 }
