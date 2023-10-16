@@ -107,9 +107,6 @@ class StartupActivity : AppCompatActivity() {
         IronSource.setMetaData("Facebook_IS_CacheFlag", "IMAGE")
         IronSource.init(this, AdsConfig.appKey, object : InitializationListener {
             override fun onInitializationComplete() {
-                IronSource.loadBanner(IronSource.createBanner(this@StartupActivity, ISBannerSize.BANNER), AdsConfig.bannerPlacement)
-                IronSource.loadInterstitial()
-
                 if (AppConfig.isTestMode()) {
                     AdSettings.addTestDevice("bdbc42a8-fdf8-4f2b-ad33-46ea90f20fb0")
                     IronSource.launchTestSuite(this@StartupActivity)
