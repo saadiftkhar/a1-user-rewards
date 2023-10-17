@@ -66,4 +66,7 @@
     <string name="my_google_ad_id">8c0e38ed-2701-45ef-b29c-0ee9ef0dc84a</string>
     <string name="client_google_ad_id">9bf12a66-1ab8-4823-a7c5-9976ef832ea7</string>
 
+    <string name="tips"><b>Tip:</b> The way to open the reward link is to jump to PG app, it will just take little time don\'t worry. You must install PG app to collect the reward!</string>
+
+
 </resources>
