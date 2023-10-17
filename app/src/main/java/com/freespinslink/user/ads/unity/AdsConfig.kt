@@ -22,7 +22,7 @@ object AdsConfig {
         appKeyMap[EnumGames.DICE_DREAMS.value] = ""
         appKeyMap[EnumGames.MATCH_MASTER.value] = "1bcf0757d"
         appKeyMap[EnumGames.PET_MASTER.value] = ""
-        appKeyMap[EnumGames.PIGGY_GO.value] = ""
+        appKeyMap[EnumGames.PIGGY_GO.value] = "1bae2965d"
         appKeyMap[EnumGames.FAMILY_ISLAND.value] = ""
         appKeyMap[EnumGames.MAFIA_MASTER.value] = ""
     }
