@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.cmrewards.freespinslink",
+  "variantName": "Coin_MasterRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2023103032,
+      "versionName": "1.4",
+      "outputFile": "Coin_Master-release-(Oct 30 23 01;07;33).apk"
+    }
+  ],
+  "elementType": "File"
+}
