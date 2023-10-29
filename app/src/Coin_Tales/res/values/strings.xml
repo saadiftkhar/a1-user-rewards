@@ -49,12 +49,6 @@
     <string name="native_ad_unit_id">ca-app-pub-8351253828200600/1323668884</string>
     <string name="ad_attribution">Ad</string>
 
-    <!--    Test banner id-->
-    <!--    ca-app-pub-3940256099942544/6300978111-->
-    <!--    Test interstitial id-->
-    <!--    ca-app-pub-3940256099942544/1033173712-->
-    <!--    Test native id-->
-    <!--    ca-app-pub-3940256099942544/2247696110-->
 
     <!--    Applovin sdk key-->
     <string name="applovin_sdk_key">9zpIFT1zJRv3IEaX0teH__UZ-JmF26JaNXCUcI64Q6Jo3WETLkT0L9XxVTcF9Iq1kTG2b7qX7Tnah4eWHApIxB</string>
@@ -62,8 +56,6 @@
     <string name="applovin_banner_ad_unit_id">a0dd9febc31cef62</string>
     <string name="applovin_native_ad_unit_id">ec319420bbeda843</string>
 
-    <!--    My google ad id-->
-    <string name="my_google_ad_id">ae362c30-cd82-4750-b129-1f6d1799b785</string>
-    <string name="client_google_ad_id">9bf12a66-1ab8-4823-a7c5-9976ef832ea7</string>
+    <string name="tips"><b>Tip:</b> The way to open the reward link is to jump to CT app, it will just take little time don\'t worry. You must install CT app to collect the reward!</string>
 
 </resources>

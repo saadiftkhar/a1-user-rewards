@@ -109,11 +109,13 @@ class RewardDetailActivity : AppCompatActivity(), View.OnClickListener {
             }
         } else {
             if (!isFinishing) {
-                val dialog = OpenRewardBottomSheet()
-                val bundle = Bundle()
-                bundle.putSerializable("reward_details", rewardDetails)
-                dialog.arguments = bundle
-                dialog.show(supportFragmentManager, "CopyReward")
+                if (::rewardDetails.isInitialized) {
+                    val dialog = OpenRewardBottomSheet()
+                    val bundle = Bundle()
+                    bundle.putSerializable("reward_details", rewardDetails)
+                    dialog.arguments = bundle
+                    dialog.show(supportFragmentManager, "CopyReward")
+                }
             }
         }
     }
