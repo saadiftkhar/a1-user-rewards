@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.ctrewards.freespinslink",
+  "variantName": "Coin_TalesRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2023102919,
+      "versionName": "1.7",
+      "outputFile": "Coin_Tales-release-(Oct 29 23 14;35;21).apk"
+    }
+  ],
+  "elementType": "File"
+}
