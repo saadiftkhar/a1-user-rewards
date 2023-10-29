@@ -63,8 +63,7 @@
     <string name="applovin_banner_ad_unit_id">ec10554f0aa33d89</string>
     <string name="applovin_native_ad_unit_id">e32d495c43adfed4</string>
 
-    <!--    My google ad id-->
-    <string name="my_google_ad_id">8c0e38ed–2701-45ef-b29c-0ee9ef0dc84a</string>
-    <string name="client_google_ad_id">9bf12a66-1ab8-4823-a7c5-9976ef832ea7</string>
+    <string name="tips"><b>Tip:</b> The way to open the reward link is to jump to PM app, it will just take little time don\'t worry. You must install PM app to collect the reward!</string>
+
 
 </resources>
