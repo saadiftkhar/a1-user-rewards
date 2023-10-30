@@ -81,6 +81,7 @@ object Constants : GamesPackage() {
         EnumGames.CRAZY_FOX.value -> true
         EnumGames.FAMILY_ISLAND.value -> true
         EnumGames.MATCH_MASTER.value -> true
+        EnumGames.PET_MASTER.value -> true
         else -> false
     }
 
