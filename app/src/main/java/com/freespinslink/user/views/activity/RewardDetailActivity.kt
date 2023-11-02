@@ -35,7 +35,7 @@ class RewardDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityRewardDetailBinding
 
-    private lateinit var rewardDetails: Rewards
+    private var rewardDetails: Rewards? = null
 
     private val mediationManager: MediationManager by lazy { MediationManager() }
 
@@ -58,9 +58,9 @@ class RewardDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setupViews() {
 
-        binding.tvRewardName.text = rewardDetails.title
-        binding.tvDate.text = rewardDetails.date
-        binding.tvTime.text = rewardDetails.time
+        binding.tvRewardName.text = rewardDetails?.title
+        binding.tvDate.text = rewardDetails?.date
+        binding.tvTime.text = rewardDetails?.time
 
         binding.ivBackPress.setOnClickListener(this)
         binding.tvClaim.setOnClickListener(this)
@@ -69,7 +69,7 @@ class RewardDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun handleRewardsSheet() {
         if (Constants.isAppInstalled(this)) {
-            if (rewardDetails.isRedeemCode())
+            if (rewardDetails?.isRedeemCode() == true)
                 showCopyCodeSheet()
             else
                 showConsentSheet()
@@ -86,16 +86,18 @@ class RewardDetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showCopyCodeSheet() {
-        val dialog = CopyRewardBottomSheet()
-        val bundle = Bundle()
-        bundle.putSerializable("reward_details", rewardDetails)
-        dialog.arguments = bundle
-        dialog.show(supportFragmentManager, "CopyReward")
+        if (rewardDetails != null) {
+            val dialog = CopyRewardBottomSheet()
+            val bundle = Bundle()
+            bundle.putSerializable("reward_details", rewardDetails)
+            dialog.arguments = bundle
+            dialog.show(supportFragmentManager, "CopyReward")
+        }
     }
 
     private fun showConsentSheet() {
         if (SharedStorage.isDialogShowAgain()) {
-            val url = rewardDetails.reward_url
+            rewardDetails?.reward_url?.let { url ->
             if (!TextUtils.isEmpty(url)) {
                 if (url.startsWith("https://") || url.startsWith("http://")) {
                     val uri: Uri = Uri.parse(url)
@@ -107,9 +109,10 @@ class RewardDetailActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 Toast.makeText(this, "Invalid Url", Toast.LENGTH_SHORT).show()
             }
+        }
         } else {
             if (!isFinishing) {
-                if (::rewardDetails.isInitialized) {
+                if (rewardDetails != null) {
                     val dialog = OpenRewardBottomSheet()
                     val bundle = Bundle()
                     bundle.putSerializable("reward_details", rewardDetails)
