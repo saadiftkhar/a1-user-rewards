@@ -88,7 +88,6 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener {
         setupInit()
         setupViews()
         setupObservers()
-        openDetails()
 
     }
 
