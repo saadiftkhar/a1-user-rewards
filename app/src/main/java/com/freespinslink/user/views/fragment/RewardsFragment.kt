@@ -68,7 +68,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener {
 
     private val ratingController: RatingController by lazy { RatingController(requireActivity()) }
 
-    private lateinit var selectedReward: Rewards
+    private var selectedReward: Rewards? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -207,7 +207,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener {
     private fun openDetails() {
         rewardsViewModel.updateRewardFailed.postValue(false)
 
-        if (::selectedReward.isInitialized) {
+        if (selectedReward != null) {
             val intent = Intent(requireContext(), RewardDetailActivity::class.java)
             intent.putExtra(Arguments.REWARD_DETAILS, selectedReward)
             startActivity(intent)

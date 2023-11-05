@@ -54,13 +54,6 @@
     <string name="ad_attribution">Ad</string>
     <string name="advertisement"><u>Advertisement</u></string>
 
-    <!--    Test banner id-->
-    <!--    ca-app-pub-3940256099942544/6300978111-->
-    <!--    Test interstitial id-->
-    <!--    ca-app-pub-3940256099942544/1033173712-->
-    <!--    Test native id-->
-    <!--    ca-app-pub-3940256099942544/2247696110-->
-
     <!--    Applovin sdk key-->
     <string name="applovin_sdk_key">9zpIFT1zJRv3IEaX0teH__UZ-JmF26JaNXCUcI64Q6Jo3WETLkT0L9XxVTcF9Iq1kTG2b7qX7Tnah4eWHApIxB</string>
     <string name="applovin_banner_ad_unit_id">62c3a07950f371bd</string>
