@@ -10,6 +10,7 @@ object SharedStorage : SharedPrefHelper(RewardsConfig.PREF_NAME) {
     private const val CURRENT_SESSIONS = "current_sessions"
     private const val RATING_STATE = "rating_state"
     private const val REWARD_DETAIL_SCREEN_OPENED = "reward_detail_screen_opened"
+    private const val ANDROID_ID = "android_id"
 
 
     @Synchronized
@@ -62,4 +63,10 @@ object SharedStorage : SharedPrefHelper(RewardsConfig.PREF_NAME) {
     fun isRewardDetailScreenOpened(): Boolean {
         return getBoolean(REWARD_DETAIL_SCREEN_OPENED, false)
     }
+
+    fun saveAndroidId(androidId: String) {
+        saveString(ANDROID_ID, androidId)
+    }
+
+    fun getAndroidId(): String = getString(ANDROID_ID, "")
 }

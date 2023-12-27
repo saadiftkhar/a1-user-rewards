@@ -10,19 +10,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 
 class RewardsApp : Application() {
 
-    init {
-    }
-
-    companion object {
-
-        var androidId = ""
-
-    }
-
     override fun onCreate() {
         super.onCreate()
-        System.loadLibrary("native-rewards-lib");
-
         setupInit()
         Constants.setupPPUrl()
         Constants.setupGamePackage()
@@ -35,17 +24,20 @@ class RewardsApp : Application() {
 
         FirebaseMessaging.getInstance()
             .subscribeToTopic(BUILD_FLAVOUR.lowercase()) // format -> dice_dreams
-        androidId = getAndroidId()
-
+        saveAndroidId()
     }
 
     @SuppressLint("HardwareIds")
-    private fun getAndroidId(): String {
-        return try {
-            Settings.Secure.getString(
-                applicationContext.contentResolver,
-                Settings.Secure.ANDROID_ID
-            )
+    private fun saveAndroidId() {
+        try {
+            SharedStorage.getAndroidId().ifEmpty {
+                SharedStorage.saveAndroidId(
+                    Settings.Secure.getString(
+                        applicationContext.contentResolver,
+                        Settings.Secure.ANDROID_ID
+                    )
+                )
+            }
         } catch (e: Exception) {
             "" // show dialog to restart the app
         }

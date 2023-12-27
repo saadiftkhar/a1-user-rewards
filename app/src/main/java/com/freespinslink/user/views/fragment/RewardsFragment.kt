@@ -199,7 +199,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener {
     private fun onUpdateReward(id: String) {
         val rewardViews = RewardViews()
         rewardViews.reward_id = id
-        rewardViews.android_id = RewardsApp.androidId
+        rewardViews.android_id = SharedStorage.getAndroidId()
         rewardsViewModel.updateView(rewardViews)
     }
 

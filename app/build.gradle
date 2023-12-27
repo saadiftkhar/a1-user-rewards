@@ -73,7 +73,7 @@ android {
             dimension "games"
             applicationId "com.ctrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.7"
+            versionName "1.8"
         }
         Crazy_Fox {
             dimension "games"

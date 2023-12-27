@@ -7,6 +7,7 @@ import com.freespinslink.user.model.Rewards
 import com.freespinslink.user.network.client.ApiService
 import com.freespinslink.user.utils.Constants
 import com.freespinslink.user.utils.RewardsApp
+import com.freespinslink.user.utils.SharedStorage
 
 class RewardsPagingSource(private val apiService: ApiService) :
     PagingSource<Int, Rewards>() {
@@ -19,7 +20,7 @@ class RewardsPagingSource(private val apiService: ApiService) :
                 pageNo = position.toString(),
                 limit = params.loadSize.toString(),
                 game = Constants.getGame(),
-                androidId = RewardsApp.androidId
+                androidId = SharedStorage.getAndroidId()
             )
 
             val pagedResponse = response.body()
