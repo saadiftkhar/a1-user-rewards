@@ -79,7 +79,7 @@ android {
             dimension "games"
             applicationId "com.cfrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.4"
+            versionName "1.5"
         }
         Dice_Dreams {
             dimension "games"
@@ -91,7 +91,7 @@ android {
             dimension "games"
             applicationId "com.mmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.7"
+            versionName "1.9"
         }
         Pet_Master {
             dimension "games"
