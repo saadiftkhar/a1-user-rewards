@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.activity.StartupActivity">
-
+<!--<TextView-->
+<!--    android:id="@+id/tvMessage"-->
+<!--    android:text="@string/ad_loading_message"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"/>-->
     <fragment
         android:id="@+id/mainHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

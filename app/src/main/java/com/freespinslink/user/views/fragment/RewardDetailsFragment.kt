@@ -13,9 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.freespinslink.user.R
-import com.freespinslink.user.ads.unity.MediationManager
 import com.freespinslink.user.databinding.FragmentRewardDetailsBinding
-import com.freespinslink.user.enums.EnumScreens
 import com.freespinslink.user.model.Rewards
 import com.freespinslink.user.utils.Arguments
 import com.freespinslink.user.utils.Constants
@@ -57,7 +55,7 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.iv_back_press -> findNavController().popBackStack()
-//            R.id.tv_claim -> unityMediationManager.showIntAd()
+            R.id.tv_claim -> handleRewardsSheet()
         }
     }
 

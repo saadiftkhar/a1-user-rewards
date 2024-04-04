@@ -4,6 +4,10 @@ plugins {
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs'
     id 'com.google.firebase.crashlytics'
+    id 'applovin-quality-service'
+}
+applovin {
+    apiKey "oaerglc-MSUTeuOo4wsf6Zam-5ELfHnG1TD_BIU8R4ICRlpiNy_U-GU5S2w3Q1CxNH1M6JOvnr8qcfacdccCnB"
 }
 
 static def getTimestamp() {
@@ -11,12 +15,12 @@ static def getTimestamp() {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.cdrewards.freespinslink"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -79,7 +83,7 @@ android {
             dimension "games"
             applicationId "com.cfrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.5"
+            versionName "1.6"
         }
         Dice_Dreams {
             dimension "games"
@@ -173,21 +177,7 @@ dependencies {
 
     // Material
     implementation 'com.google.android.material:material:1.6.0-alpha01'
-
-    // For admob
-//    implementation 'com.google.android.gms:play-services-ads:20.6.0'
-//    implementation 'com.google.android.gms:play-services-location:19.0.1'
-
-    // Iron source
-    implementation 'com.ironsource.sdk:mediationsdk:7.5.1'
-    implementation 'com.google.android.gms:play-services-appset:16.0.0'
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
-    implementation 'com.google.android.gms:play-services-basement:18.1.0'
-    implementation 'com.ironsource.adapters:facebookadapter:4.3.45'
-    implementation 'com.facebook.android:audience-network-sdk:6.16.0'
-
-    // Comment it out before uploading or go live
-    //implementation 'com.google.android.ads:mediation-test-suite:2.0.0'
 
     // For Android 12
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
@@ -202,6 +192,11 @@ dependencies {
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+
+    // Aplovin
+    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+    implementation 'com.applovin:applovin-sdk:12.4.0'
+    implementation 'com.applovin.mediation:unityads-adapter:4.10.0.0'
 
     // Lottie
     def lottieVersion = "5.2.0"

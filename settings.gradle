@@ -10,4 +10,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "A1 User Rewards"
-include ':app', ':applovin_native_ads'
+include ':app'

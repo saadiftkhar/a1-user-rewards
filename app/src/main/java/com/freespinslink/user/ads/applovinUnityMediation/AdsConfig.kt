@@ -1,4 +1,4 @@
-package com.freespinslink.user.ads.unity
+package com.freespinslink.user.ads.applovinUnityMediation
 
 import com.freespinslink.user.enums.EnumGames
 import com.freespinslink.user.utils.Constants

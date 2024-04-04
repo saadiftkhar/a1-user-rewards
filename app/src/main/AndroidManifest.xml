@@ -62,30 +62,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.ironsource.sdk.controller.ControllerActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true" />
-        <activity
-            android:name="com.ironsource.sdk.controller.InterstitialActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name="com.ironsource.sdk.controller.OpenUrlActivity"
-            android:configChanges="orientation|screenSize"
-            android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name="com.facebook.ads.AudienceNetworkActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:hardwareAccelerated="true"
-            tools:replace="android:configChanges" />
-
-        <provider
-            android:name="com.ironsource.lifecycle.IronsourceLifecycleProvider"
-            android:authorities="${applicationId}.IronsourceLifecycleProvider" />
-
         <service
             android:name=".fcm.MyFirebaseMessage"
             android:exported="false">
@@ -106,6 +82,9 @@
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="${crashlyticsCollectionEnabled}" />
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="_KBVkpXWZ-XzKQVbJqoFyORlqNAnFaiMWvuv1EDOe2_TLoutM7iTt83mN3BdTnaXm9ybeTZBipqcP7SrXAJCdg" />
     </application>
 
 </manifest>

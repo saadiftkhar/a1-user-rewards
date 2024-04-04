@@ -21,7 +21,7 @@ class RewardsApp : Application() {
 
         CommonConfig.initSharedConfig(configBus)
         SharedStorage.incSessionCount()
-
+        initializeApplovinSdk()
         FirebaseMessaging.getInstance()
             .subscribeToTopic(BUILD_FLAVOUR.lowercase()) // format -> dice_dreams
         saveAndroidId()
@@ -48,6 +48,14 @@ class RewardsApp : Application() {
         override fun getAppContext(): Context {
             return this@RewardsApp.applicationContext
         }
+    }
+
+    private fun initializeApplovinSdk() {
+//        AppLovinSdk.getInstance(this).mediationProvider = "max"
+//        AppLovinSdk.initializeSdk(this) {
+//            Log.d("Ads_Initialized", "initializeApplovinSdk: ${it.isTestModeEnabled}")
+            // AppLovin SDK is initialized, start loading ads
+//        }
     }
 
 }
