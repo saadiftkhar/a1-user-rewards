@@ -8,9 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.applovin.sdk.AppLovinSdk
 import com.freespinslink.user.R
-import com.freespinslink.user.ads.applovinUnityMediation.OpenAppAdManager
 import com.freespinslink.user.utils.SharedStorage
 import com.freespinslink.user.views.fragment.PrivacyPolicyFragmentDirections
 

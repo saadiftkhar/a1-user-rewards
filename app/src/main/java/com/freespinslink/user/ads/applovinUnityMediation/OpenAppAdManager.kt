@@ -40,11 +40,6 @@ class OpenAppAdManager(
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onCreate() {
-//        showAdIfReady()
-    }
-
     override fun onAdLoaded(ad: MaxAd) {
         showAdIfReady()
         onLoaded(true)

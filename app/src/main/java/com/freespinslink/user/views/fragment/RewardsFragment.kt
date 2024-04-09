@@ -204,10 +204,9 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdLis
         rewardsViewModel.updateRewardFailed.postValue(false)
 
         if (selectedReward != null) {
-//            val intent = Intent(requireContext(), RewardDetailActivity::class.java)
-//            intent.putExtra(Arguments.REWARD_DETAILS, selectedReward)
-//            startActivity(intent)
-            findNavController().navigate(RewardsFragmentDirections.actionRewardsFragmentToRewardDetailsFragment(selectedReward))
+            findNavController().navigate(R.id.rewardDetailsFragment, Bundle().apply {
+                putSerializable(Arguments.REWARD_DETAILS, selectedReward)
+            })
         }
 
     }

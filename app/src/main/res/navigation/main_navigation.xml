@@ -33,10 +33,10 @@
         android:name="com.freespinslink.user.views.fragment.RewardDetailsFragment"
         android:label="RewardDetailsFragment"
         tools:layout="@layout/fragment_reward_details">
-        <argument
-            android:name="reward_details"
-            app:argType="com.freespinslink.user.model.Rewards"
-            app:nullable="true" />
+<!--        <argument-->
+<!--            android:name="reward_details"-->
+<!--            app:argType="com.freespinslink.user.model.Rewards"-->
+<!--            app:nullable="true" />-->
         <action
             android:id="@+id/action_rewardDetailsFragment_to_openRewardBottomSheet"
             app:destination="@id/openRewardBottomSheet" />
