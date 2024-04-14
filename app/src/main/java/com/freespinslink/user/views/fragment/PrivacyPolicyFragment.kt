@@ -54,9 +54,7 @@ class PrivacyPolicyFragment : Fragment(), View.OnClickListener {
     private fun onClickCta() {
         if (binding.cbPrivacyTerms.isChecked) {
             SharedStorage.updatePrivacyCheck(true)
-            findNavController().navigate(
-                PrivacyPolicyFragmentDirections.actionPrivacyPolicyFragmentToRewardsFragment()
-            )
+            findNavController().navigate(R.id.action_privacyPolicyFragment_to_rewardsFragment)
 
         } else {
             requireActivity().showToast("Please accept the privacy terms")

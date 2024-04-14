@@ -153,11 +153,7 @@
                 android:id="@+id/bannerView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:visibility="visible">
-
-            </FrameLayout>
+                app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

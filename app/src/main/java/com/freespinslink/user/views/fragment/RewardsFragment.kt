@@ -4,8 +4,6 @@ import android.content.Intent
 import android.content.Intent.ACTION_SENDTO
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +22,8 @@ import com.applovin.mediation.MaxAdListener
 import com.applovin.mediation.MaxError
 import com.applovin.mediation.ads.MaxInterstitialAd
 import com.freespinslink.user.R
+import com.freespinslink.user.ads.applovinUnityMediation.AdsConfig
+import com.freespinslink.user.ads.applovinUnityMediation.BannerAdManager
 import com.freespinslink.user.controller.RatingController
 import com.freespinslink.user.databinding.FragmentRewardsBinding
 import com.freespinslink.user.enums.EnumCtaType
@@ -38,13 +38,9 @@ import com.freespinslink.user.utils.SharedStorage
 import com.freespinslink.user.utils.openInBrowser
 import com.freespinslink.user.utils.showToast
 import com.freespinslink.user.viewmodel.RewardsViewModel
-import com.freespinslink.user.views.activity.RewardDetailActivity
 import com.freespinslink.user.views.adapter.RewardsPagingAdapter
 import com.freespinslink.user.views.dialog.ProgressDialog
 import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
-import kotlin.math.min
-import kotlin.math.pow
 
 
 class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdListener {
@@ -66,6 +62,8 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdLis
 
     private var selectedReward: Rewards? = null
 
+    private lateinit var mBannerAdManager: BannerAdManager
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,13 +76,19 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdLis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        showBannerAds(requireContext(), binding.bannerView)
+        mBannerAdManager = BannerAdManager(requireContext(), binding.bannerView)
+        mBannerAdManager.createBannerAd()
         createInterstitialAd()
 
         setupInit()
         setupViews()
         setupObservers()
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mBannerAdManager.destroy()
     }
 
     override fun onClick(p0: View?) {
@@ -104,7 +108,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdLis
 
             adDecision(rewards)
         } else {
-            findNavController().navigate(RewardsFragmentDirections.actionRewardsFragmentToRouteToPlaystoreDialog())
+            findNavController().navigate(R.id.action_rewardsFragment_to_routeToPlaystoreDialog)
         }
     }
 
@@ -116,7 +120,7 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdLis
     private fun setupViews() {
 
         if (SharedStorage.isRatingApplicable())
-            RatingController(requireActivity()).showRateAppDialog()
+            RatingController(requireContext()).showRateAppDialog()
 
         rewardsViewModel.fetchRewards()
 
@@ -259,74 +263,6 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdLis
 
     }
 
-    //    fun showBannerAds(context: Context, bannerView: FrameLayout? = null) {
-//        val banner: IronSourceBannerLayout =
-//            IronSource.createBanner(context as Activity, ISBannerSize.BANNER)
-//        banner.let {
-//            val layoutParams = FrameLayout.LayoutParams(
-//                FrameLayout.LayoutParams.MATCH_PARENT,
-//                FrameLayout.LayoutParams.MATCH_PARENT
-//            )
-//            bannerView?.addView(it, 0, layoutParams)
-//        }
-//
-//        banner.levelPlayBannerListener = object : LevelPlayBannerListener {
-//            override fun onAdLoaded(adInfo: AdInfo) {
-//                Log.d("Banner_Ad_Result", "onAdLoaded: $adInfo")
-//                bannerView?.isVisible = true
-//            }
-//
-//            override fun onAdLoadFailed(error: IronSourceError) {
-//                Log.d(
-//                    "Banner_Ad_Result",
-//                    "onAdLoadFailed: ${error.errorCode} - ${error.errorMessage}"
-//                )
-//            }
-//
-//            override fun onAdClicked(adInfo: AdInfo) {}
-//
-//            override fun onAdScreenPresented(adInfo: AdInfo) {}
-//
-//            override fun onAdScreenDismissed(adInfo: AdInfo) {}
-//
-//            override fun onAdLeftApplication(adInfo: AdInfo) {}
-//        }
-////        IronSource.loadBanner(banner, AdsConfig.bannerPlacement)
-//    }
-//    fun loadInterstitialAd() {
-//        IronSource.loadInterstitial()
-//        IronSource.setLevelPlayInterstitialListener(object : LevelPlayInterstitialListener {
-//            override fun onAdReady(adInfo: AdInfo) {
-//                Log.d("Interstitial_Ad_Result", "onAdReady: $adInfo")
-//            }
-//
-//            override fun onAdLoadFailed(error: IronSourceError) {
-//                Log.d(
-//                    "Interstitial_Ad_Result",
-//                    "onAdLoadFailed: ${error.errorCode} - ${error.errorMessage}"
-//                )
-//            }
-//
-//            override fun onAdOpened(adInfo: AdInfo) {}
-//
-//            override fun onAdClosed(adInfo: AdInfo) {
-//                openDetails()
-//                IronSource.loadInterstitial()
-//                Log.d(javaClass.simpleName, "onIntAdClosed: $adInfo")
-//            }
-//
-//            override fun onAdShowFailed(error: IronSourceError, adInfo: AdInfo) {
-//                IronSource.loadInterstitial()
-//                Log.d(javaClass.simpleName, "onIntAdShowFailed: ${error.errorMessage} \n $adInfo")
-//            }
-//
-//            override fun onAdClicked(adInfo: AdInfo) {}
-//
-//            override fun onAdShowSucceeded(adInfo: AdInfo) {}
-//        })
-//
-//    }
-// MAX Ad Listener
     override fun onAdLoaded(maxAd: MaxAd) {
     }
 
@@ -352,8 +288,8 @@ class RewardsFragment : Fragment(), OnRewardOpen, View.OnClickListener, MaxAdLis
         interstitialAd.loadAd()
     }
 
-  private  fun createInterstitialAd() {
-        interstitialAd = MaxInterstitialAd("182d3d3e47a182f4", requireActivity())
+    private fun createInterstitialAd() {
+        interstitialAd = MaxInterstitialAd(AdsConfig.initAdId, requireActivity())
         interstitialAd.setListener(this)
 
         // Load the first ad

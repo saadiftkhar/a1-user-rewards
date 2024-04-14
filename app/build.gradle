@@ -195,7 +195,7 @@ dependencies {
 
     // Aplovin
     implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
-    implementation 'com.applovin:applovin-sdk:12.4.0'
+    implementation 'com.applovin:applovin-sdk:12.4.2'
     implementation 'com.applovin.mediation:unityads-adapter:4.10.0.0'
     implementation 'com.github.saadiftkhar:toaster:1.3'
 

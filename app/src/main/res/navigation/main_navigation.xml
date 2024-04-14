@@ -33,10 +33,10 @@
         android:name="com.freespinslink.user.views.fragment.RewardDetailsFragment"
         android:label="RewardDetailsFragment"
         tools:layout="@layout/fragment_reward_details">
-<!--        <argument-->
-<!--            android:name="reward_details"-->
-<!--            app:argType="com.freespinslink.user.model.Rewards"-->
-<!--            app:nullable="true" />-->
+        <!--        <argument-->
+        <!--            android:name="reward_details"-->
+        <!--            app:argType="com.freespinslink.user.model.Rewards"-->
+        <!--            app:nullable="true" />-->
         <action
             android:id="@+id/action_rewardDetailsFragment_to_openRewardBottomSheet"
             app:destination="@id/openRewardBottomSheet" />
@@ -49,21 +49,13 @@
         android:name="com.freespinslink.user.bottomsheets.OpenRewardBottomSheet"
         android:label="OpenRewardBottomSheet"
         tools:layout="@layout/layout_open_reward_consent">
-        <argument
-            android:name="reward_details"
-            app:argType="com.freespinslink.user.model.Rewards"
-            app:nullable="true" />
+
     </dialog>
     <dialog
         android:id="@+id/copyRewardBottomSheet"
         android:name="com.freespinslink.user.bottomsheets.CopyRewardBottomSheet"
         android:label="CopyRewardBottomSheet"
-        tools:layout="@layout/layout_copy_reward">
-        <argument
-            android:name="reward_details"
-            app:argType="com.freespinslink.user.model.Rewards"
-            app:nullable="true" />
-    </dialog>
+        tools:layout="@layout/layout_copy_reward" />
     <dialog
         android:id="@+id/routeToPlaystoreDialog"
         android:name="com.freespinslink.user.views.dialog.RouteToPlaystoreDialog"

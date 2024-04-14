@@ -11,6 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.freespinslink.user.R
+import com.freespinslink.user.ads.applovinUnityMediation.BannerAdManager
+import com.freespinslink.user.ads.applovinUnityMediation.NativeAdManager
 import com.freespinslink.user.databinding.FragmentRewardDetailsBinding
 import com.freespinslink.user.model.Rewards
 import com.freespinslink.user.utils.Arguments
@@ -27,6 +29,9 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
     private var rewardDetails: Rewards? = null
 
     private val navController by lazy { findNavController() }
+
+    private lateinit var mNativeAdManager: NativeAdManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +65,8 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setupViews() {
+        mNativeAdManager = NativeAdManager(requireContext(), binding.nativeView)
+        mNativeAdManager.createNativeAd()
 
         binding.tvRewardName.text = rewardDetails?.title
         binding.tvDate.text = rewardDetails?.date
@@ -90,9 +97,10 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
 
     private fun showCopyCodeSheet() {
         navController.navigate(
-            RewardDetailsFragmentDirections.actionRewardDetailsFragmentToCopyRewardBottomSheet(
-                rewardDetails
-            )
+            R.id.action_rewardDetailsFragment_to_copyRewardBottomSheet,
+            Bundle().apply {
+                putSerializable("reward_details", rewardDetails)
+            }
         )
     }
 
@@ -113,9 +121,9 @@ class RewardDetailsFragment : Fragment(), View.OnClickListener {
             }
         } else {
             navController.navigate(
-                RewardDetailsFragmentDirections.actionRewardDetailsFragmentToOpenRewardBottomSheet(
-                    rewardDetails
-                )
+                R.id.action_rewardDetailsFragment_to_openRewardBottomSheet, Bundle().apply {
+                    putSerializable("reward_details", rewardDetails)
+                }
             )
         }
     }

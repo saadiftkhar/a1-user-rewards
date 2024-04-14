@@ -8,9 +8,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.applovin.sdk.AppLovinSdk
 import com.freespinslink.user.R
+import com.freespinslink.user.ads.applovinUnityMediation.AdsConfig
 import com.freespinslink.user.utils.SharedStorage
-import com.freespinslink.user.views.fragment.PrivacyPolicyFragmentDirections
 
 class StartupActivity : AppCompatActivity() {
 
@@ -21,7 +22,9 @@ class StartupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
 
-//        AppLovinSdk.getInstance(this).showMediationDebugger()
+        if (AdsConfig.isDebuggerShown) {
+            AppLovinSdk.getInstance(this).showMediationDebugger()
+        }
 
         try {
             setupViews()
@@ -53,10 +56,7 @@ class StartupActivity : AppCompatActivity() {
         navigationController = Navigation.findNavController(this, R.id.mainHostFragment)
 
         if (SharedStorage.isPrivacyChecked()) {
-            navigationController
-                .navigate(
-                    PrivacyPolicyFragmentDirections.actionPrivacyPolicyFragmentToRewardsFragment()
-                )
+            navigationController.navigate(R.id.action_privacyPolicyFragment_to_rewardsFragment)
         }
     }
 

@@ -24,7 +24,7 @@ class OpenAppAdManager(
     init {
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
-        appOpenAd = MaxAppOpenAd("58faaadb59f3da34", context)
+        appOpenAd = MaxAppOpenAd(AdsConfig.openAppAdId ?: "", context)
         appOpenAd.setListener(this)
         appOpenAd.loadAd()
     }

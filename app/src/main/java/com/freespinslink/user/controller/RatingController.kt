@@ -1,6 +1,7 @@
 package com.freespinslink.user.controller
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AlertDialog
@@ -9,7 +10,7 @@ import com.freespinslink.user.enums.EnumRating
 import com.freespinslink.user.utils.Constants
 import com.freespinslink.user.utils.SharedStorage
 
-class RatingController(val context: FragmentActivity) {
+class RatingController(val context: Context) {
 
     fun showRateAppDialog() {
 

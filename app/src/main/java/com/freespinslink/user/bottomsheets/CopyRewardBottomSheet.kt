@@ -16,6 +16,7 @@ import com.freespinslink.user.R
 import com.freespinslink.user.databinding.LayoutCopyRewardBinding
 import com.freespinslink.user.model.Rewards
 import com.freespinslink.user.utils.copyToClipboard
+import com.freespinslink.user.utils.serializable
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -28,7 +29,7 @@ class CopyRewardBottomSheet : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        rewardDetails = arguments?.get("reward_details") as Rewards
+        rewardDetails = arguments?.serializable<Rewards>("reward_details") as Rewards
 
     }
 
