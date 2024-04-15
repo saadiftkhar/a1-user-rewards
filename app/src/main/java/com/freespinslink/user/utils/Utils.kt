@@ -8,12 +8,14 @@
 package com.freespinslink.user.utils
 
 import android.app.Activity
-import android.app.ActivityManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -24,8 +26,9 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.freespinslink.user.R
 import com.google.android.material.snackbar.Snackbar
+import java.io.Serializable
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
@@ -134,4 +137,34 @@ fun Context.copyToClipboard(clipLabel: String, text: CharSequence) {
     val clipboard = ContextCompat.getSystemService(this, ClipboardManager::class.java)
     clipboard?.setPrimaryClip(ClipData.newPlainText(clipLabel, text))
     showToast(text.toString())
+}
+
+inline fun <reified T : Parcelable> Intent.parcelable(key: String): T? = when {
+    Build.VERSION.SDK_INT >= 33 -> getParcelableExtra(key, T::class.java)
+    else -> @Suppress("DEPRECATION") getParcelableExtra(key) as? T
+}
+
+inline fun <reified T : Parcelable> Bundle.parcelable(key: String): T? = when {
+    Build.VERSION.SDK_INT >= 33 -> getParcelable(key, T::class.java)
+    else -> @Suppress("DEPRECATION") getParcelable(key) as? T
+}
+
+inline fun <reified T : Parcelable> Bundle.parcelableArrayList(key: String): ArrayList<T>? = when {
+    Build.VERSION.SDK_INT >= 33 -> getParcelableArrayList(key, T::class.java)
+    else -> @Suppress("DEPRECATION") getParcelableArrayList(key)
+}
+
+inline fun <reified T : Parcelable> Intent.parcelableArrayList(key: String): ArrayList<T>? = when {
+    Build.VERSION.SDK_INT >= 33 -> getParcelableArrayListExtra(key, T::class.java)
+    else -> @Suppress("DEPRECATION") getParcelableArrayListExtra(key)
+}
+
+inline fun <reified T : Serializable> Intent.serializable(key: String): T? = when {
+    Build.VERSION.SDK_INT >= 33 -> getSerializableExtra(key, T::class.java)
+    else -> @Suppress("DEPRECATION") getSerializableExtra(key) as? T
+}
+
+inline fun <reified T : Serializable> Bundle.serializable(key: String): T? = when {
+    Build.VERSION.SDK_INT >= 33 -> getSerializable(key, T::class.java)
+    else -> @Suppress("DEPRECATION") getSerializable(key) as? T
 }

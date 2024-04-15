@@ -3,7 +3,6 @@ package com.freespinslink.user.utils
 import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.freespinslink.user.BuildConfig
 import com.freespinslink.user.enums.EnumGames
 

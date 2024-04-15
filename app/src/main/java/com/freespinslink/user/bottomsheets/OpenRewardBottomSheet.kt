@@ -69,13 +69,13 @@ class OpenRewardBottomSheet : BottomSheetDialogFragment() {
     private fun saveReward() {
         val url = rewardDetails.reward_url
 
-        if (!TextUtils.isEmpty(url)) {
-            if (url.startsWith("https://") || url.startsWith("http://")) {
+        if (url.isNotEmpty()) {
+            if (url.startsWith("https://") or url.startsWith("http://")) {
                 SharedStorage.saveNotShowAgain(binding.cbNotSeeAgain.isChecked)
 
                 val uri: Uri = Uri.parse(url)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(intent)
+                requireActivity().startActivity(intent)
                 dismiss()
             } else {
                 Toast.makeText(requireActivity(), "Invalid Url", Toast.LENGTH_SHORT).show()
