@@ -4,16 +4,16 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.cmrewards.freespinslink",
-  "variantName": "Coin_MasterRelease",
+  "applicationId": "com.pgrewards.freespinslink",
+  "variantName": "Piggy_GoRelease",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 2024041517,
+      "versionCode": 2024041537,
       "versionName": "1.4",
-      "outputFile": "Coin_Master-release-(Apr 15 24 23;16;19).apk"
+      "outputFile": "Piggy_Go-release-(Apr 15 24 23;47;38).apk"
     }
   ],
   "elementType": "File"

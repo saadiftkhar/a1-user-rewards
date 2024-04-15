@@ -65,19 +65,19 @@ android {
             dimension "games"
             applicationId "com.cdrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.4"
+            versionName "1.5"
         }
         Coin_Master {
             dimension "games"
             applicationId "com.cmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.4"
+            versionName "1.5"
         }
         Coin_Tales {
             dimension "games"
             applicationId "com.ctrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.8"
+            versionName "1.9"
         }
         Crazy_Fox {
             dimension "games"
@@ -89,7 +89,7 @@ android {
             dimension "games"
             applicationId "com.ddrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.6"
+            versionName "1.7"
         }
         Match_Master {
             dimension "games"
@@ -101,19 +101,19 @@ android {
             dimension "games"
             applicationId "com.pmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.3"
+            versionName "1.4"
         }
         Piggy_Go {
             dimension "games"
             applicationId "com.pgrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.3"
+            versionName "1.4"
         }
         Family_Island {
             dimension "games"
             applicationId "com.firewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.2"
+            versionName "1.3"
         }
         Mafia_Master {
             dimension "games"
