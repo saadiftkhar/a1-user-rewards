@@ -4,16 +4,16 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.cmrewards.freespinslink",
-  "variantName": "Coin_MasterRelease",
+  "applicationId": "com.pmrewards.freespinslink",
+  "variantName": "Pet_MasterRelease",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 2024041517,
+      "versionCode": 2024041535,
       "versionName": "1.4",
-      "outputFile": "Coin_Master-release-(Apr 15 24 23;16;19).apk"
+      "outputFile": "Pet_Master-release-(Apr 15 24 23;51;37).apk"
     }
   ],
   "elementType": "File"

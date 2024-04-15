@@ -4,16 +4,16 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.cmrewards.freespinslink",
-  "variantName": "Coin_MasterRelease",
+  "applicationId": "com.cdrewards.freespinslink",
+  "variantName": "Coin_DragonRelease",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 2024041517,
+      "versionCode": 2024041529,
       "versionName": "1.4",
-      "outputFile": "Coin_Master-release-(Apr 15 24 23;16;19).apk"
+      "outputFile": "Coin_Dragon-release-(Apr 15 24 23;01;39).apk"
     }
   ],
   "elementType": "File"
