@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
-    id 'androidx.navigation.safeargs'
     id 'com.google.firebase.crashlytics'
     id 'applovin-quality-service'
 }
@@ -15,6 +14,7 @@ static def getTimestamp() {
 }
 
 android {
+    namespace "com.freespinslink.user"
     compileSdk 34
 
     defaultConfig {
@@ -41,6 +41,7 @@ android {
             manifestPlaceholders["crashlyticsCollectionEnabled"] = false
         }
         release {
+            shrinkResources false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders["crashlyticsCollectionEnabled"] = true
@@ -65,61 +66,61 @@ android {
             dimension "games"
             applicationId "com.cdrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.5"
+            versionName "1.6"
         }
         Coin_Master {
             dimension "games"
             applicationId "com.cmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.5"
+            versionName "1.6"
         }
         Coin_Tales {
             dimension "games"
             applicationId "com.ctrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.9"
+            versionName "2.0"
         }
         Crazy_Fox {
             dimension "games"
             applicationId "com.cfrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.7"
+            versionName "1.8"
         }
         Dice_Dreams {
             dimension "games"
             applicationId "com.ddrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.7"
+            versionName "1.8"
         }
         Match_Master {
             dimension "games"
             applicationId "com.mmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.9"
+            versionName "2.0"
         }
         Pet_Master {
             dimension "games"
             applicationId "com.pmrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.4"
+            versionName "1.5"
         }
         Piggy_Go {
             dimension "games"
             applicationId "com.pgrewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.4"
+            versionName "1.5"
         }
         Family_Island {
             dimension "games"
             applicationId "com.firewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.3"
+            versionName "1.4"
         }
         Mafia_Master {
             dimension "games"
             applicationId "com.mafiarewards.freespinslink"
             versionCode getTimestamp()
-            versionName "1.2"
+            versionName "1.3"
         }
     }
     compileOptions {
@@ -137,16 +138,16 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.5'
-    implementation 'com.google.firebase:firebase-crashlytics:18.4.3'
-    implementation 'com.google.firebase:firebase-analytics:21.2.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.4.1'
+    implementation 'com.google.firebase:firebase-crashlytics:18.6.4'
+    implementation 'com.google.firebase:firebase-analytics:21.6.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 
     //    Circle imageView
@@ -154,12 +155,12 @@ dependencies {
 
 
 //    Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 
 
 //    Responsive screen sizes
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
     //   Retrofit
@@ -167,7 +168,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //   Logging-Interceptor for Asynchronous Call
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     //    Round imageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
@@ -175,26 +176,23 @@ dependencies {
     // Swipe refresh layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
-    // Material
-    implementation 'com.google.android.material:material:1.6.0-alpha01'
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
 
     // For Android 12
-    implementation 'androidx.work:work-runtime-ktx:2.7.1'
+//    implementation 'androidx.work:work-runtime-ktx:2.9.0'
 
     //    Fragment Navigation using JetPack
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
-    implementation "androidx.fragment:fragment-ktx:1.4.1"
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
-    implementation "androidx.fragment:fragment-ktx:1.4.1"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+    implementation "androidx.fragment:fragment-ktx:1.6.2"
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
 
     //Paging Library
-    implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'androidx.paging:paging-runtime-ktx:3.2.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
 
     // Aplovin
-    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.7.0'
     implementation 'com.applovin:applovin-sdk:12.4.2'
     implementation 'com.applovin.mediation:unityads-adapter:4.10.0.0'
     implementation 'com.github.saadiftkhar:toaster:1.3'
@@ -202,4 +200,6 @@ dependencies {
     // Lottie
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+//    implementation 'com.google.android.gms:play-services-ads:23.0.0'
+
 }
