@@ -6,7 +6,7 @@ import com.freespinslink.user.utils.Constants
 object AdsConfig {
 
 
-    val isDebuggerShown = true
+    val isDebuggerShown = false
     private val bannerAdIdMap = HashMap<String, String>()
     private val nativeAdIdMap = HashMap<String, String>()
     private val openAppAdIdMap = HashMap<String, String>()
